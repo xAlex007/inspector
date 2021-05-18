@@ -1,0 +1,181 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    padding-top: 65px;
+}
+
+h1 {
+    margin-top: 40px;
+}
+
+.bold {
+    font-weight: bold;
+    color: #454545;
+}
+
+.c-close {
+    background-color: rgba(0, 0, 0, 0.00);
+    border: none;
+    font-size: 15px;
+    font-family: Webdings;
+}
+
+/*Navbar*/
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.nav-item {
+    padding-top: 22px;
+    padding-bottom: 18px;
+}
+
+.navbar-toggler {
+    padding: 3px;
+}
+
+.navbutton {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/*Botões de redes sociais - Footer*/
+.btn-circle {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #3b5998;
+}
+
+.btn-dark {
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+    .btn-dark:hover {
+        opacity: 0.7;
+    }
+
+.btn-info {
+    background-color: #25d366;
+}
+/*Cardápio - Produtos*/
+.wadjust {
+    width: 90%;
+    height: 74vh;
+}
+
+.card-img {
+    height: 11rem;
+}
+
+.bg-pink {
+    background: #f878ff;
+}
+/*Efeito de hover - Produtos*/
+.container-overlay {
+    padding: 0;
+    overflow: hidden;
+    max-height: 300px;
+    max-width: 300px;
+    width: 109% !important;
+}
+
+    .container-overlay img {
+        width: 100%;
+        top: 0;
+        left: 0;
+        transition: all 2s ease;
+    }
+
+.detalhes {
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.container-overlay:hover {
+    cursor: auto;
+}
+
+    .container-overlay:hover img {
+        opacity: 0.275;
+        transform: scale(1.4);
+    }
+
+    .container-overlay:hover .detalhes {
+        opacity: 1;
+        transform: translate(0px, 0px);
+    }
+/*Bolha de diálogo - Contato*/
+.speech-bubble {
+    position: relative;
+    background: #e1306c;
+    border-radius: .4em;
+}
+
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 20px solid transparent;
+        border-left-color: #e1306c;
+        border-right: 0;
+        margin-top: -20px;
+        margin-right: -20px;
+    }
+/*Carrossel - Home*/
+.carousel img {
+    max-height: 50vh;
+    margin: 0 auto;
+}
+
+.carousel li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+/*Modal*/
+#modalpedido .modal-content {
+    background: rgba(255, 255, 255, 0.8);
+    background-image: url('../Imgs/ilogo_tr.png');
+    background-position:right;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}
+
+.modal-header, .modal-footer {
+    background-image: url('../Imgs/frosa.jpg');
+}
+
+.modal-content img {
+    width: 10%;
+    height: 10%;
+    margin-left: 45%;
+}
+/*Imagem do produto - Pedidos*/
+.card-select {
+    width: 15rem;
+    height: 15rem;
+}
+
+    .card-select .card-img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
