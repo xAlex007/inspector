@@ -11,4 +11,10 @@ public partial class Pages_templates : System.Web.UI.Page
     {
 
     }
+
+    protected void b_newtemplate_Click(object sender, EventArgs e)
+    {
+        //Response.Write("<script></script>");
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "openModal();", true);
+    }
 }

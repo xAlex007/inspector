@@ -101,7 +101,7 @@ public partial class pg_Pedidos : System.Web.UI.Page
             ltlPedido.Text += "<p><b>CEP: </b>" + encomenda.Cep + "</p>";
             ltlPedido.Text += "<p><b>Valor total: </b> R$" + encomenda.ValorTotal + "</p>";
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                    
         }
         else
         {
