@@ -101,6 +101,4 @@ public partial class Pages_templates : System.Web.UI.Page
                 break;
         }
     }
-
-
 }

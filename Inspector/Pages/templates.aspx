@@ -40,7 +40,7 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <div class="row bg-light">
+                <div class="row bg-light border">
                     <div class="col-sm">
                         '<%# Eval("Produto") %>'
                     </div>
@@ -62,7 +62,7 @@
                     <div class="col-sm">
                         <asp:LinkButton ID="lbAlterar" class="btn btn-outline-primary btn-sm" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("Produto")%>'>Alterar</asp:LinkButton>
                         <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Produto")%>'>Excluir</asp:LinkButton>
-                    </div>                    
+                    </div>
                 </div>
             </ItemTemplate>
         </asp:ListView>        
