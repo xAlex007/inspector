@@ -10,21 +10,62 @@
 <asp:Content ID="Body" ContentPlaceHolderID="render" Runat="Server">
     <main> 
         <asp:Button ID="b_newtemplate" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false"/>
+        <asp:SqlDataSource ID="Templates" runat="server" ConnectionString="<%$ ConnectionStrings:InspectorDB %>" SelectCommand="SELECT * FROM [Template]"></asp:SqlDataSource>
+        <asp:ListView ID="lvtemplates" runat="server" DataSourceID="Templates" OnItemCommand="lvtemplates_ItemCommand">
+            <LayoutTemplate>
+                <div class="row bg-body">
+                    <div class="col-sm heading">
+                        Produto
+                    </div>
+                    <div class="col-md heading">
+                        Desenho
+                    </div>
+                    <div class="col-md heading">
+                        Posição
+                    </div>
+                    <div class="col-md heading">
+                        Nº Cotas
+                    </div>
+                    <div class="col-md heading">
+                        Anexo PDF
+                    </div>
+                    <div class="col-md heading">
+                        Anexo XLT
+                    </div>
+                    <div class="col-sm heading">
+                        Ações
+                    </div>
+                </div>        
+                <asp:PlaceHolder runat="server" ID="itemPlaceholder" />
+            </LayoutTemplate>
 
-        <asp:GridView ID="gv_templates" runat="server" OnRowCreated="gv_templates_RowCreated" OnRowCommand="gv_templates_RowCommand">
-             <Columns>
-                 <asp:TemplateField>
-                         <ItemTemplate>
-                            <asp:LinkButton ID="lbAlterar" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("Produto")%>'>Alterar</asp:LinkButton>
-                         </ItemTemplate>
-                 </asp:TemplateField>
-                 <asp:TemplateField>
-                         <ItemTemplate>
-                            <asp:LinkButton ID="lbDeletar" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Produto")%>'>Excluir</asp:LinkButton>
-                         </ItemTemplate>
-                 </asp:TemplateField>
-             </Columns>
-        </asp:GridView>
+            <ItemTemplate>
+                <div class="row bg-light border">
+                    <div class="col-sm">
+                        '<%# Eval("Produto") %>'
+                    </div>
+                    <div class="col-md">
+                        '<%# Eval("Desenho") %>'
+                    </div>
+                    <div class="col-md">
+                        '<%# Eval("Posicao") %>'
+                    </div>
+                    <div class="col-md">
+                        '<%# Eval("Cotas") %>'
+                    </div>
+                    <div class="col-md">
+                        '<%# Eval("PDF") %>'
+                    </div>
+                    <div class="col-md">
+                        '<%# Eval("XLT") %>'
+                    </div>
+                    <div class="col-sm">
+                        <asp:LinkButton ID="lbAlterar" class="btn btn-outline-primary btn-sm" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("Produto")%>'>Alterar</asp:LinkButton>
+                        <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Produto")%>'>Excluir</asp:LinkButton>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:ListView>        
 
         <!--Modal Novo Template-->
         <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

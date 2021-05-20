@@ -10,24 +10,16 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_templates : System.Web.UI.Page
 {
-    private void Load()
-    {
-        TemplateDB db = new TemplateDB();
-        DataSet ds = db.SelectAll();
-        gv_templates.DataSource = ds.Tables[0].DefaultView;
-        gv_templates.DataBind();
-    }
 
     private void Reload()
     {
-
         Response.Redirect(Request.RawUrl);
     }
 
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        Load();        
+        
     }
 
     protected void cancel_Click(object sender, EventArgs e)
@@ -84,18 +76,7 @@ public partial class Pages_templates : System.Web.UI.Page
         Reload();
     }
 
-    protected void gv_templates_RowCreated(object sender, GridViewRowEventArgs e)
-    {
-        GridViewRow row = e.Row;
-        TableCell action1 = row.Cells[0];
-        TableCell action2 = row.Cells[1];
-        row.Cells.Remove(action1);
-        row.Cells.Remove(action2);
-        row.Cells.Add(action1);
-        row.Cells.Add(action2);
-    }
-
-    protected void gv_templates_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void lvtemplates_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
         string produto = Convert.ToString(e.CommandArgument);
         TemplateDB db = new TemplateDB();
@@ -114,7 +95,7 @@ public partial class Pages_templates : System.Web.UI.Page
                 break;
             case "Deletar":
                 db.Delete(produto);
-                Load();
+                Reload();
                 break;
             default:
                 break;
