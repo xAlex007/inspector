@@ -33,7 +33,7 @@
     </nav>
     </header>
     <form id="form1" runat="server" class="formulario">
-    <div style="min-height:100%;">        
+    <div>        
         <asp:ContentPlaceHolder id="render" runat="server">
 
         </asp:ContentPlaceHolder>

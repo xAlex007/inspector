@@ -72,9 +72,7 @@ html, body, #Body {
     font-family: 'Mina' !important;
 }
 
-.formulario{
-    height:100%;
-}
+
 
 .footer {
     position: absolute;
@@ -111,16 +109,14 @@ html, body, #Body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100% !important;
+    min-height: 100% !important;
+    height: 100%;
     width: auto;
     background: linear-gradient(45deg, #393e46, #727272, #687980, #02475e);
     background-size: 300% 300%;
     animation: colors 20s ease infinite;
 }
 
-.form-body{
-    min-height:100%!important;
-}
 @keyframes colors {
     0% {
         background-position: 0% 50%;
