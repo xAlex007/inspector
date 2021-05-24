@@ -9,11 +9,11 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" Runat="Server">
     <main> 
-        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false"/>
+        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false" style=" margin-left: 50px; margin-right: 50px; margin-top: 100px"/>
         <asp:SqlDataSource ID="Templates" runat="server" ConnectionString="<%$ ConnectionStrings:InspectorDB %>" SelectCommand="SELECT * FROM [Template]"></asp:SqlDataSource>
         <asp:ListView ID="lvtemplates" runat="server" DataSourceID="Templates" OnItemCommand="lvtemplates_ItemCommand">
             <LayoutTemplate>
-                <div class="row bg-body">
+                <div class="row bg-body" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px">
                     <div class="col-sm heading">
                         Produto
                     </div>
@@ -35,12 +35,12 @@
                     <div class="col-sm heading">
                         Ações
                     </div>
-                </div>        
+                </div>      
                 <asp:PlaceHolder runat="server" ID="itemPlaceholder" />
             </LayoutTemplate>
 
             <ItemTemplate>
-                <div class="row bg-light border">
+                <div class="row bg-light border" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px">
                     <div class="col-sm">
                         '<%# Eval("Produto") %>'
                     </div>
@@ -71,10 +71,11 @@
         <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="staticBackdropLabel"><strong>Novo Template</strong></h4>
+                    <div class="modal-header" style="background-color:rgb(0,0,0,0.3)">
+                        <h4 class="modal-title" id="staticBackdropLabel"><strong style="font-family: mina; margin-left: 135px; font-size:27px">Novo Template</strong></h4>
                     </div>
-                    <div class="modal-body">
+
+                    <div class="modal-body" style="background-color:rgb(0,0,0,0.15)">
                         <asp:Label ID="l_produto" runat="server" Text="Produto:"></asp:Label>
                         <asp:TextBox ID="i_produto" CssClass="form-control" runat="server"></asp:TextBox>                        
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_produto" ValidationGroup="Save"></asp:RequiredFieldValidator>
@@ -100,7 +101,7 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_xlt" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     </div>
 
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="background-color:rgb(0,0,0,0.3)">
                         <asp:Button ID="Button4" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
                         <asp:Button ID="Button1" class="btn btn-outline-success" runat="server" Text="Salvar" ValidationGroup="Save" OnClick="bSave_Click"/>                        
                     </div>
@@ -109,13 +110,13 @@
         </div>
         
         <!--Modal Editar Template-->
-                <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="staticBackdropLabel2"><strong>Editar Template</strong></h4>
+                    <div class="modal-header" style="background-color:rgb(0,0,0,0.3)">
+                        <h4 class="modal-title" id="staticBackdropLabel2"><strong style="font-family: mina; margin-left: 136px; font-size:27px">Editar template</strong></h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="background-color:rgb(0,0,0,0.15)">
                         <asp:Label ID="el_produto" runat="server" Text="Produto:"></asp:Label>
                         <asp:TextBox ID="ei_produto" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>                        
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_produto" ValidationGroup="Edit"></asp:RequiredFieldValidator>
@@ -141,7 +142,7 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_xlt" ValidationGroup="Edit"></asp:RequiredFieldValidator>
                     </div>
 
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="background-color:rgb(0,0,0,0.3)">
                         <asp:Button ID="Button3" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
                         <asp:Button ID="Button2" class="btn btn-outline-success" runat="server" Text="Salvar" ValidationGroup="Edit" OnClick="bEdit_Click"/>                        
                     </div>
