@@ -14,7 +14,7 @@
 
             <%--Opções de inspeção--%>
             <div class="col-md-6 col-2">
-                <div class="rounded col-6" style="margin-left: 50px; margin-right: 50px; border: 1px solid #4ED84B; --bs-gutter-x: 0; background-color: rgb(0,0,0,0.05);">
+                <div class="rounded col-6" style="margin-left: 300px; margin-right: 50px; border: 1px solid #4ED84B; --bs-gutter-x: 0; background-color: rgb(0,0,0,0.05);">
                     <div class="row pt-5 pb-5">
                         <div class="col-md-2 col-2 item-inspeção p-2" style="border: 1px solid #4ED84B; background-color: #4ED84B; border-radius: 1.2rem; margin-left:120px;">
                             <a href="#">
@@ -49,7 +49,7 @@
                                 <img src="../Src/img/doughnut-chart.png" style="height: 70px;"></a>
                         </div>
                         <div class="col-md-2 col-2 item-gerenciamento p-2" style="border: 1px solid #4B84D8; background-color: #4B84D8; margin-left: 80px; border-radius: 1.2rem;">
-                            <a href="#">
+                            <a href="templates.aspx">
                                 <img src="../Src/img/template.png" style="height: 65px;"></a>
                         </div>
                     </div>
