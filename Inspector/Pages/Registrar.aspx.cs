@@ -16,8 +16,8 @@ public partial class Pages_Registrar : System.Web.UI.Page
     protected void lbRegistro_Click1(object sender, EventArgs e)
     {
         Registro Funcionario = new Registro();
-        Funcionario.cpf = txtcpf.Text;
-        Funcionario.data_nascimento = txtdatanascimento;
+        Funcionario.cpf = int.Parse(txtcpf.Text);
+        Funcionario.data_nascimento = int.Parse( txtdatanascimento.Text);
         Funcionario.nome = txtnome.Text;
         Funcionario.senha = txtsenha.Text;
     }
