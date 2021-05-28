@@ -20,15 +20,22 @@
     <header>
         <!--Navbar-->
         <nav class="navbar navbar-expand-md nav-cecal">
-            <div>
-                <a class="navbar-brand" href="../index.aspx">
-                    <img src="../Src/img/logo.png" class="logo-cecal" height="48" width="180" alt="Logo Cecal">
-                </a>
-                <div class="collapse d-sm-inline-flex flex-sm-row-reverse" id="nav-size">
-                    <ul class="navbar-nav flex-grow-1">
-                    </ul>
+            <a class="navbar-brand" href="../index.aspx">
+                <img src="../Src/img/logo.png" class="logo-cecal" height="48" width="180" alt="Logo Cecal">
+            </a>
+            <div class="dropdown" style="margin-left: 1000px;">
+                <button class="dropbtn btn-light" style="border-radius: 3rem; font-family: none;"><strong>AA</strong></button>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
                 </div>
             </div>
+            <%--<div class="collapse d-sm-inline-flex flex-sm-row-reverse" id="nav-size">
+                <ul class="navbar-nav flex-grow-1">
+                </ul>
+
+            </div>--%>
         </nav>
     </header>
     <form id="form1" runat="server" class="formulario">
