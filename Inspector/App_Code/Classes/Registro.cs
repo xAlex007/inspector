@@ -26,5 +26,6 @@ namespace Inspector.Classes
         public string senha { get; set; }
 
 
+
     }
 }
