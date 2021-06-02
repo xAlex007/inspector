@@ -21,10 +21,10 @@ public static class Mensagem
             case Mensagem.TipoMensagem.Alerta:
                 texto = "ATENÇÃO \n\n" + texto;
                 break;
-                case Mensagem.TipoMensagem.Erro;
+            case Mensagem.TipoMensagem.Erro:
                 texto = "ERRO \n\n" + texto;
                 break;
-                case Mensagem.TipoMensagem.Sucesso;
+            case Mensagem.TipoMensagem.Sucesso:
                 texto = "SUCESSO \n\n" + texto;
                 break;
         }
