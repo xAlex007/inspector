@@ -38,7 +38,7 @@ public partial class Pages_usuarios : System.Web.UI.Page
         user.Nome = i_nome.Text;
         user.Email = i_email.Text;
         user.Nivel = Convert.ToChar(i_nivel.Text);
-        user.IsBlock = i_isblock.Checked;
+        user.IsBlock = false;
 
 
         if (db.Insert(user))
@@ -52,5 +52,52 @@ public partial class Pages_usuarios : System.Web.UI.Page
         Reload();
     }
 
-   
+    protected void bEdit_Click(object sender, EventArgs e)
+    {
+        Usuario user = new Usuario();
+        UsuarioDB db = new UsuarioDB();
+        
+        user.Id = Convert.ToInt32(ei_id.Text);
+        user.Senha = db.PswHash(ei_senha.Text);
+        user.Nome = ei_nome.Text;
+        user.Email = ei_email.Text;
+        user.Nivel = Convert.ToChar(ei_nivel.Text);
+        user.IsBlock = ei_isblock.Checked;
+
+        if (db.Update(user))
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "alert('Alterado com sucesso');", true);
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "alert('Erro ao alterar.');", true);
+        }
+        Reload();
+    }
+
+    protected void lvusers_ItemCommand(object sender, ListViewCommandEventArgs e)
+    {
+        int id = Convert.ToInt32(e.CommandArgument);
+        UsuarioDB db = new UsuarioDB();
+
+        switch (e.CommandName)
+        {
+            case "Alterar":
+                Usuario user = db.Select(id);
+                ei_id.Text = Convert.ToString(id);
+                ei_usuario.Text = user.Username;
+                ei_nome.Text = user.Nome;
+                ei_email.Text = user.Email;
+                ei_nivel.SelectedValue = Convert.ToString(user.Nivel);
+                ei_isblock.Checked = user.IsBlock;
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#editModal').modal('show')", true);
+                break;
+            case "Deletar":
+                db.Delete(id);
+                Reload();
+                break;
+            default:
+                break;
+        }
+    }
 }

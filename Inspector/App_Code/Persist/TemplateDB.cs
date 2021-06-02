@@ -100,6 +100,7 @@ namespace Inspector.Persist
                 return false;
             }
         }
+
         //Delete
         public bool Delete(string produto)
         {

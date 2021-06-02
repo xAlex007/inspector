@@ -15,6 +15,8 @@ namespace Inspector.Persist
 {
     public class UsuarioDB
     {
+        //Métodos
+        //Criptografia de Senha
         public string PswHash(string senha)
         {
             byte[] salt;
@@ -27,14 +29,82 @@ namespace Inspector.Persist
             string senhaHash = Convert.ToBase64String(hashBytes);
             return senhaHash;
         }
-
-        //Métodos
         //Insert
         public bool Insert(Usuario user)
         {
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
             string sql = "INSERT INTO[dbo].[Usuario]([Username], [Senha], [Nome], [Email], [Nivel], [IsBlock]) VALUES('" + user.Username + "', '" + user.Senha + "', '" + user.Nome + "', '" + user.Email + "', '" + user.Nivel + "', '" + user.IsBlock + "')";
+            SqlCommand cmd = new SqlCommand(sql, _context);
+            _context.Open();
+            int m = cmd.ExecuteNonQuery();
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            if (m != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //Select
+        public Usuario Select(int id)
+        {
+            Usuario obj = null;
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT * FROM [dbo].[Usuario] WHERE Id = '" + id + "'";
+            SqlCommand cmd = new SqlCommand(sql, _context);
+            _context.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                obj = new Usuario();
+                obj.Id = Convert.ToInt32(reader["Id"]);
+                obj.Username = Convert.ToString(reader["Username"]);
+                obj.Nome = Convert.ToString(reader["Nome"]);
+                obj.Email = Convert.ToString(reader["Email"]);
+                obj.Nivel = Convert.ToChar(reader["Nivel"]);
+                obj.IsBlock = Convert.ToBoolean(reader["IsBlock"]);
+            }
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return obj;
+        }
+        //Update
+        public bool Update(Usuario user)
+        {
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "UPDATE [dbo].[Usuario] SET Senha = '" + user.Senha + "', Nome = '" + user.Nome + "', Email = '" + user.Email + "', Nivel = '" + user.Nivel + "', IsBlock = '" + user.IsBlock + "' WHERE Id = '" + user.Id + "'";
+            SqlCommand cmd = new SqlCommand(sql, _context);
+            _context.Open();
+            int m = cmd.ExecuteNonQuery();
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            if (m != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //Delete
+        public bool Delete(int id)
+        {
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "DELETE FROM [dbo].[Usuario] WHERE Id = '" + id + "'";
             SqlCommand cmd = new SqlCommand(sql, _context);
             _context.Open();
             int m = cmd.ExecuteNonQuery();
