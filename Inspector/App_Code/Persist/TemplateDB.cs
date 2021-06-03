@@ -9,8 +9,8 @@ using Inspector.Classes;
 
 namespace Inspector.Persist
 {
-public class TemplateDB
-{
+    public class TemplateDB
+    {
         //Métodos
         //Insert
         public bool Insert(Template template)
@@ -100,6 +100,7 @@ public class TemplateDB
                 return false;
             }
         }
+
         //Delete
         public bool Delete(string produto)
         {
