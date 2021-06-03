@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Inspector.Classes;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 /// <summary>
 /// Descrição resumida de UsuarioDB
 /// </summary>
@@ -16,19 +17,6 @@ namespace Inspector.Persist
     public class UsuarioDB
     {
         //Métodos
-        //Criptografia de Senha
-        public string PswHash(string senha)
-        {
-            byte[] salt;
-            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
-            var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 100000);
-            byte[] hash = pbkdf2.GetBytes(20);
-            byte[] hashBytes = new byte[36];
-            Array.Copy(salt, 0, hashBytes, 0, 16);
-            Array.Copy(hash, 0, hashBytes, 16, 20);
-            string senhaHash = Convert.ToBase64String(hashBytes);
-            return senhaHash;
-        }
         //Insert
         public bool Insert(Usuario user)
         {
@@ -120,6 +108,42 @@ namespace Inspector.Persist
             {
                 return false;
             }
+        }
+
+        //Proteção contra SQL Injection
+        public bool IsAlphaNumeric(string text)
+        {
+            return Regex.IsMatch(text, "^[a-zA-Z0-9]+$");
+        }
+        //Hashing de Senha
+        public string PswHash(string senha)
+        {
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+            var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0, 16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+            string senhaHash = Convert.ToBase64String(hashBytes);
+            return senhaHash;
+        }
+        //Validação Hash de Senha
+        public bool HashCompare(string senhabd, string senha)
+        {
+            byte[] hashBytes = Convert.FromBase64String(senhabd);
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+            var pbkdf2 = new Rfc2898DeriveBytes(senha, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            for (int i = 0; i < 20; i++)
+            {
+                if (hashBytes[i + 16] != hash[i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
