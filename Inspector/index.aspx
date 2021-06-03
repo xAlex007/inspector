@@ -8,7 +8,7 @@
 <div id="gradient">
     <div class="rounded" id="homewelcome">
         <h1>INSPECTOR</h1>        
-        <asp:LinkButton ID="lbLogin" class="btn btn-light" runat="server">Login</asp:LinkButton>
+        <asp:LinkButton ID="lbLogin" class="btn btn-light" runat="server" style="margin-left: 90px;">Login</asp:LinkButton>
     </div>
 </div>
 </asp:Content>
