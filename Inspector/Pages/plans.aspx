@@ -9,6 +9,7 @@
         <asp:SqlDataSource ID="Planos" runat="server" ConnectionString="<%$ ConnectionStrings:InspectorDB %>" SelectCommand="SELECT P.OP, P.Produto, T.Desenho, T.Posicao, T.Cotas, T.PDF, T.XLT FROM [dbo].PlanoInspecao AS P INNER JOIN [dbo].Template AS T ON P.Produto = T.Produto"></asp:SqlDataSource>
         <asp:ListView ID="lvplanos" runat="server" DataSourceID="Planos" OnItemCommand="lvplanos_ItemCommand">
             <LayoutTemplate>
+
                 <div class="row bg-body">
                     <div class="col-sm heading">
                         OP
