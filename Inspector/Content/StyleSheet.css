@@ -229,27 +229,5 @@ html, body, #Body {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #fff;
-}
-
-.style90{
-    height: 90px;
-}
-
-.item-inspecao-top {
-    border: 1px solid #4ED84B;
-    background-color: #4ED84B;
-    border-radius: 1.2rem;
-    margin-left: 125px;
-    height: 110px;
-    width: 110px;
-}
-
-.item-inspecao-bot {
-    border: 1px solid #4ED84B;
-    background-color: #4ED84B;
-    border-radius: 1.2rem;
-    margin-left: 125px;
-    height: 110px;
-    width: 110px;
+    background-color: #3e8e41;
 }
