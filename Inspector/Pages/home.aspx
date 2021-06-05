@@ -1,14 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="home.aspx.cs" Inherits="Pages_home" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://codepen.io/chocochip/pen/zYxMgRG"></script>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="render" runat="Server">
+<asp:Content ID="Body" ContentPlaceHolderID="render" runat="Server">
     <main>
 
         <div class="row" style="margin-top: 200px; --bs-gutter-x: 0;">
