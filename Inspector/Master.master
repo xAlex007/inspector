@@ -33,9 +33,9 @@
                         AA
                       </button>
                       <ul class="dropdown-menu dropdown-content dropdown-menu-md-end pt-0">
-                        <li class="card-header"><asp:Label runat="server" Text="Olá, Admnistrador."></asp:Label></li>      
-                        <li><button class="dropdown-item" type="button"><img src="Src/img/users.png" class="pb-1" height="32"/>&nbspGestão de Usuários</button></li>
-                        <li><button class="dropdown-item" type="button"><img src="Src/img/logout.png" class="pb-1" height="32"/>&nbspSair</button></li>
+                        <li class="card-header"><asp:Label runat="server" Text="Olá, Admnistrador."></asp:Label></li>
+                        <li><asp:HyperLink class="dropdown-item" runat="server" NavigateUrl="~/Pages/usuarios.aspx"><img src="../Src/img/users.png" class="pb-1" height="36"/>&nbspGestão de Usuários</asp:HyperLink></li>
+                        <li><asp:HyperLink class="dropdown-item" runat="server" NavigateUrl="#"><img src="../Src/img/logout.png" class="pb-1" height="32"/>&nbspSair</asp:HyperLink></li>
                       </ul>
                     </div>
                 </div>
