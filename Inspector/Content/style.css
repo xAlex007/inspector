@@ -3,7 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 h1 {
     font-family: Audiowide;
-    color:#d10000;
+    color: #d10000;
     text-shadow: 2px 2px 4px black;
 }
 
@@ -63,8 +63,8 @@ main, form {
     }
 }
 
-.text-small{
-    font-size:0.8em;
+.text-small {
+    font-size: 0.8em;
 }
 
 .createform {
