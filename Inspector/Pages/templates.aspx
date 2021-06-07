@@ -137,13 +137,17 @@
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>                                
                                 <asp:PlaceHolder ID="ph_pdf" runat="server" ></asp:PlaceHolder>
-                                <asp:LinkButton ID="b_remove" runat="server" OnClick="b_remove_Click">X</asp:LinkButton>
+                                <asp:LinkButton ID="b_rmvpdf" runat="server" OnClick="b_rmvpdf_Click" CssClass="remove-button"><asp:Image runat="server" ImageUrl="~/Src/img/remove.png" Height="24"/></asp:LinkButton>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                         <br />
                         <asp:Label ID="el_xlt" runat="server" Text="XLT:"></asp:Label>
-                        <asp:TextBox ID="ei_xlt" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_xlt" ValidationGroup="Edit"></asp:RequiredFieldValidator>
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                            <ContentTemplate>                                
+                                <asp:PlaceHolder ID="ph_xlt" runat="server" ></asp:PlaceHolder>
+                                <asp:LinkButton ID="b_rmvxlt" runat="server" OnClick="b_rmvxlt_Click" CssClass="remove-button"><asp:Image runat="server" ImageUrl="~/Src/img/remove.png" Height="24"/></asp:LinkButton>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>                        
                     </div>
 
                     <div class="modal-footer" style="background-color:rgba(0,0,0,0.3)">

@@ -127,6 +127,11 @@ main, form {
     background-color: rgba(0,0,0,0.04);
 }
 
+.remove-button {
+    position: relative;
+    top: -3px;
+}
+
 /*#region Botão usuário*/
 .dropbtn {
     background: linear-gradient(225deg, rgba(181,181,181,1) 0%, rgba(221,221,221,1) 75%, rgba(255,255,255,1) 100%);
