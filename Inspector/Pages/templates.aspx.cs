@@ -2,9 +2,7 @@
 using Inspector.Persist;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -53,6 +51,8 @@ public partial class Pages_templates : System.Web.UI.Page
 
     protected void bSave_Click(object sender, EventArgs e)
     {
+        Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
+        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         try
         {
             if (i_pdf.PostedFile.ContentType == "application/pdf" && i_xlt.PostedFile.ContentType == "application/vnd.ms-excel")
@@ -72,7 +72,7 @@ public partial class Pages_templates : System.Web.UI.Page
 
                 TemplateDB db = new TemplateDB();
                 if (db.Insert(template))
-                {
+                {                    
                     l_msgtype.Text += "<div class='modal-header justify-content-center bg-success'>";
                     l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/success.png' height='32'/></h5>";
                     l_msgtype.Text += "</div>";
@@ -108,6 +108,8 @@ public partial class Pages_templates : System.Web.UI.Page
 
     protected void bEdit_Click(object sender, EventArgs e)
     {
+        Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
+        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         try
         {
             bool invalidfile = false;
@@ -229,11 +231,10 @@ public partial class Pages_templates : System.Web.UI.Page
     {
         string produto = Convert.ToString(e.CommandArgument);
         TemplateDB db = new TemplateDB();
-
+        Template template = db.Select(produto);
         switch (e.CommandName)
         {
-            case "Alterar":
-                Template template = db.Select(produto);
+            case "Alterar":                
                 ei_produto.Text = template.Produto;
                 ei_desenho.Text = template.Desenho;
                 ei_pos.Text = template.Posicao;
@@ -256,8 +257,29 @@ public partial class Pages_templates : System.Web.UI.Page
                 ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#editModal').modal('show')", true);
                 break;
             case "Deletar":
-                db.Delete(produto);
-                Response.Redirect(Request.RawUrl);
+                Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
+                Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
+                try
+                {
+                    db.Delete(produto);
+                    var delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.PDF);
+                    System.IO.File.Delete(delfile);
+                    delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.XLT);
+                    System.IO.File.Delete(delfile);
+                    l_msgtype.Text += "<div class='modal-header justify-content-center bg-success'>";
+                    l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/success.png' height='32'/></h5>";
+                    l_msgtype.Text += "</div>";
+                    l_status.Text = "Template Nº " + produto + " excluído com sucesso.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                }
+                catch (Exception ex)
+                {
+                    l_msgtype.Text += "<div class='modal-header justify-content-center bg-danger'>";
+                    l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
+                    l_msgtype.Text += "</div>";
+                    l_status.Text = "Erro: " + ex.Message;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                }
                 break;
             default:
                 break;

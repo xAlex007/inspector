@@ -157,18 +157,6 @@
                 </div>
             </div>
         </div>
-
-        <!--Modal Mensagem-->
-        <div class="modal fade" id="msgModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <asp:Literal ID="l_msgtype" runat="server"></asp:Literal>                    
-                    <div class="modal-body">
-                        <asp:Label ID="l_status" runat="server"></asp:Label>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </asp:Content>
 

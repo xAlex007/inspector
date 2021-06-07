@@ -7,5 +7,5 @@
         msgModal.hide();
         msgModal.dispose();
         window.location.href = window.location.href;
-    }, 5000);
+    }, 4000);
 }
