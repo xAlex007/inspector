@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" Runat="Server">
-        <main> 
+        <div class="block w-75">
         <asp:Button ID="b_newuser" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newuser_Click" CausesValidation="false"/>
         <asp:SqlDataSource ID="Users" runat="server" ConnectionString="<%$ ConnectionStrings:InspectorDB %>" SelectCommand="SELECT Id, Username, Nome, Email, Nivel, IsBlock FROM [dbo].[Usuario]"></asp:SqlDataSource>
         <asp:ListView ID="lvusers" runat="server" DataSourceID="Users" OnItemCommand="lvusers_ItemCommand" >
@@ -151,6 +151,6 @@
             </div>
         </div>
         
-    </main>
+    </div>
 </asp:Content>
 

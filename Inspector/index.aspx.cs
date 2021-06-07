@@ -12,30 +12,6 @@ public partial class Index : System.Web.UI.Page
 
     }
 
-    protected void bLogin_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void btnLogar_Click(object sender, EventArgs e)
-    {
-        logar();
-    }
-
-    public void logar()
-    {
-        /*if (UsuarioDB.ValidarUsuario(UserName.Text, txtSenha.Text))
-        {
-            Response.Redirect("~/Default.aspx");
-        }
-        else
-        {
-            this.ExibirAlerta(Mensagem.TipoMensagem.Alerta, "Usuario não existe");
-            return;
-        } */
-        
-    }
-
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
     {
         string auth = this.ValidarUsuario(Login1.UserName, Login1.Password);
