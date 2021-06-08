@@ -8,30 +8,30 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" Runat="Server">
     <div class="block" style="width:100vw"> 
-        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false" style=" margin-left: 50px; margin-right: 50px; margin-top: 100px"/>
+        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success buttonuser" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false" style=" margin-left: 50px; margin-right: 50px; margin-top: 100px"/>
         <asp:SqlDataSource ID="Templates" runat="server" ConnectionString="<%$ ConnectionStrings:InspectorDB %>" SelectCommand="SELECT * FROM [Template]"></asp:SqlDataSource>
         <asp:ListView ID="lvtemplates" runat="server" DataSourceID="Templates" OnItemCommand="lvtemplates_ItemCommand">
             <LayoutTemplate>
-                <div class="row bg-body" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px">
-                    <div class="col-sm heading">
+                <div class="row bg-body" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px; background-color: rgba(0,0,0,0.08);">
+                    <div class="col-sm heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Produto
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Desenho
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);"> 
                         Posição
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Nº Cotas
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Anexo PDF
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Anexo XLT
                     </div>
-                    <div class="col-sm heading">
+                    <div class="col-sm heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Ações
                     </div>
                 </div>      
@@ -39,7 +39,7 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <div class="row bg-light border" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px">
+                <div class="row border-bottom" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; background-color: rgba(0,0,0,0.08);">
                     <div class="col-sm">
                         <%# Eval("Produto") %>
                     </div>
