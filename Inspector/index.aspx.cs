@@ -59,6 +59,8 @@ public partial class Index : System.Web.UI.Page
                         if (!obj.IsBlock)
                         {
                             Session["Nivel"] = reader["Nivel"];
+                            Session["Ini"] = Convert.ToString(reader["Nome"]).Substring(0, 1) + Convert.ToString(reader["Nome"]).Substring(Convert.ToString(reader["Nome"]).IndexOf(" ") + 1, 1);
+
                             retorno = "OK";
                         }
                         else

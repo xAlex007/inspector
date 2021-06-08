@@ -22,12 +22,19 @@ html, body, #Body {
     font-family: Mina !important;
 }
 
-main, form {
+form{
     display: flex;
     flex: 1;
+    flex-direction:column;
     min-height: 100% !important;
     min-width: 100% !important;
 }
+
+main{
+    display:flex;
+    flex: 1;
+}
+
 
 .nav-cecal {
     background: #929292
@@ -135,7 +142,9 @@ main, form {
 /*#region Botão usuário*/
 .dropbtn {
     background: linear-gradient(225deg, rgba(181,181,181,1) 0%, rgba(221,221,221,1) 75%, rgba(255,255,255,1) 100%);
-    padding: 12px;
+    height: 60px;
+    width: 60px;
+    padding-top: 13px;
     font-size: 24px;
     border: none;
 }

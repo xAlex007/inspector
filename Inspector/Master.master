@@ -20,34 +20,34 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
-    <header>
-        <!--Navbar-->
-        <nav class="navbar nav-cecal d-flex justify-content-center justify-content-md-between">
-            <div class="container-fluid px-1 px-md-3">
-                <a class="navbar-brand ms-sm-0 ms-md-3" href="../Pages/home.aspx">
-                    <img src="../Src/img/logo.png" class="logo-cecal img-fluid" height="48" width="180" alt="Logo Cecal">
-                </a>
-                <div class="container-fluid-nav text-center">
-                    <h1>INSPECTOR</h1>
-                </div>                
-                <div style="width:180px;" class="d-sm-flex flex-row-reverse">
-                    <div class="btn-group me-sm-0 me-md-3 align-self-end">
-                      <button type="button" class="dropbtn btn btn-light rounded-circle" data-bs-toggle="dropdown" aria-expanded="false">
-                        AA
-                      </button>
-                      <ul class="dropdown-menu dropdown-content dropdown-menu-md-end pt-0">
-                        <li class="card-header"><asp:Label ID="greet" runat="server"></asp:Label></li>
-                        <li><asp:HyperLink class="dropdown-item" runat="server" NavigateUrl="~/Pages/usuarios.aspx"><img src="../Src/img/users.png" class="pb-1" height="36"/>&nbspGestão de Usuários</asp:HyperLink></li>
-                        <li><asp:HyperLink class="dropdown-item" runat="server" NavigateUrl="#"><img src="../Src/img/logout.png" class="pb-1" height="32"/>&nbspSair</asp:HyperLink></li>
-                      </ul>
+<body> 
+    <form id="form1" runat="server">
+        <header runat="server">
+            <!--Navbar-->
+            <nav class="navbar nav-cecal d-flex justify-content-center justify-content-md-between">
+                <div class="container-fluid px-1 px-md-3">
+                    <a class="navbar-brand ms-sm-0 ms-md-3" href="../Pages/home.aspx">
+                        <img src="../Src/img/logo.png" class="logo-cecal img-fluid" height="48" width="180" alt="Logo Cecal">
+                    </a>
+                    <div class="container-fluid-nav text-center">
+                        <h1>INSPECTOR</h1>
+                    </div>                
+                    <div id="userbtn" style="width:180px;" class="d-sm-flex flex-row-reverse" runat="server" visible="false">
+                        <div class="btn-group me-sm-0 me-md-3 align-self-end">
+                          <button type="button" class="dropbtn btn btn-light rounded-circle" data-bs-toggle="dropdown" aria-expanded="false">
+                              <asp:Label ID="usrini" runat="server"></asp:Label>
+                          </button>
+                          <ul class="dropdown-menu dropdown-content dropdown-menu-md-end pt-0">
+                            <li class="card-header"><asp:Label ID="greet" runat="server"></asp:Label></li>
+                            <li><asp:PlaceHolder ID="ph_usr" runat="server"></asp:PlaceHolder></li>
+                            <li><asp:Button ID="b_logout" CssClass="dropdown-item" runat="server" Text="Sair" OnClick="b_logout_Click"/></li>
+                          </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
-    <form id="form1" runat="server" class="formulario">
         <main style="width:100%;">
             <asp:ContentPlaceHolder ID="render" runat="server">
             </asp:ContentPlaceHolder>
