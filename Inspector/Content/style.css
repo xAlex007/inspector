@@ -1,20 +1,8 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-h1 {
-    font-family: Audiowide;
-    color: #d10000;
-    text-shadow: 2px 2px 2px black;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 18px;
-    }
-}
-
 html, body, #Body {
-    position: relative;
+    overflow-x: hidden;
     min-width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -35,11 +23,37 @@ main{
     flex: 1;
 }
 
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+}
 
+/*#region Navbar*/
 .nav-cecal {
     background: #929292
 }
 
+h1 {
+    font-family: Audiowide;
+    color: #d10000;
+    text-shadow: 2px 2px 2px black;
+}
+
+@media only screen and (max-width: 768px) {
+    .title {
+        width:116px;
+    }
+}
+
+@media only screen and (max-width: 499px) {
+    .title {
+        display:none;
+    }
+}
+/*#endregion */
+
+/*#region Homepage*/
 .homewelcome {
     border: 1px solid #D10000;
     background: rgba(255, 255, 255, 0.33);
@@ -69,6 +83,7 @@ main{
         background-position: 0% 50%;
     }
 }
+/*#endregion */
 
 .text-small {
     font-size: 0.8em;
@@ -151,7 +166,7 @@ main{
 
 .dropdown-content {
     background-color: #f1f1f1;
-    min-width: 20.83vw;
+    min-width: 25.83vw;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     font-size: 24px;
 }

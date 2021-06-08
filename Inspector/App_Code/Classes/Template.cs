@@ -23,12 +23,10 @@ namespace Inspector.Classes
         public string PDF { get; set; }
         [Required]
         public string XLT { get; set; }
-        //public ICollection<PlanoInspecao> Planos { get; set; }
+        public ICollection<PlanoInspecao> Planos { get; set; }
         public Template()
         {
-            //
             // TODO: Adicionar lógica do construtor aqui
-            //
         }
     }
 }

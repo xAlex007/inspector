@@ -1,6 +1,7 @@
 ﻿using Inspector.Persist;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -26,11 +27,17 @@ public partial class Pages_plans : System.Web.UI.Page
 
     protected void b_newplano_Click(object sender, EventArgs e)
     {
-        /*ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#newModal').modal('show')", true);*/
+        ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#newModal').modal('show')", true);
     }
 
-    protected void bSave_Click(object sender, EventArgs e)
+    protected void bOK_Click(object sender, EventArgs e)
     {
+        PlanosDB db = new PlanosDB();
+        DataSet ds = new DataSet();
+        ds = db.Filter(i_op6.Text);
+        DataTable data = ds.Tables[0];
+        GridView1.DataSource = data;
+        GridView1.DataBind();
         /*Template template = new Template();
         template.Produto = i_produto.Text;
         template.Desenho = i_desenho.Text;

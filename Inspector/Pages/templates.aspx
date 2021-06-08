@@ -8,7 +8,7 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" Runat="Server">
     <div class="block" style="width:100vw"> 
-        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false" style=" margin-left: 50px; margin-right: 50px; margin-top: 100px"/>
+        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false"/>
         <asp:SqlDataSource ID="Templates" runat="server" ConnectionString="<%$ ConnectionStrings:InspectorDB %>" SelectCommand="SELECT * FROM [Template]"></asp:SqlDataSource>
         <asp:ListView ID="lvtemplates" runat="server" DataSourceID="Templates" OnItemCommand="lvtemplates_ItemCommand">
             <LayoutTemplate>
@@ -70,8 +70,8 @@
         <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color:rgba(0,0,0,0.3)">
-                        <h4 class="modal-title" id="staticBackdropLabel"><strong style="font-family: mina; margin-left: 135px; font-size:27px">Novo Template</strong></h4>
+                    <div class="modal-header justify-content-center" style="background-color:rgba(0,0,0,0.3)">
+                        <h4 class="modal-title fw-bold" id="staticBackdropLabel">Novo Template</h4>
                     </div>
 
                     <div class="modal-body" style="background-color:rgba(0,0,0,0.15)">
