@@ -194,3 +194,25 @@ h1 {
     background: linear-gradient(225deg, rgba(106,113,120,1) 0%, rgba(208,208,208,1) 75%, rgba(242,242,242,1) 100%);
 }
 /*#endregion */
+
+.style90 {
+    height: 90px;
+}
+
+.item-inspecao-top {
+    border: 1px solid #4ED84B;
+    background-color: #4ED84B;
+    border-radius: 1.2rem;
+    margin-left: 125px;
+    height: 110px;
+    width: 110px;
+}
+
+.item-inspecao-bot {
+    border: 1px solid #4ED84B;
+    background-color: #4ED84B;
+    border-radius: 1.2rem;
+    margin-left: 125px;
+    height: 110px;
+    width: 110px;
+}
