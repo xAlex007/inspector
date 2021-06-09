@@ -69,7 +69,7 @@
             </ItemTemplate>
         </asp:ListView>
 
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+        
 
         <!--Modal Novo Plano-->
         <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -88,6 +88,83 @@
                     <div class="modal-footer" style="background-color:rgba(0,0,0,0.3)">
                         <asp:Button ID="Button1" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
                         <asp:Button ID="Button2" class="btn btn-outline-success" runat="server" Text="OK" ValidationGroup="OK" OnClick="bOK_Click"/>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Confirmar Plano-->
+        <div class="modal fade" id="confirmModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center" style="background-color:rgba(0,0,0,0.3)">
+                        <h4 class="modal-title fw-bold" id="staticBackdropLabel1">Novo Plano de Inspeção</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <asp:Label ID="Label1" runat="server" Text="Será criado um plano de inspeção para cada uma das ordens abaixo:"></asp:Label>
+                        <br />
+                        <br />
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>                                
+                                <asp:ListView ID="lvnewplan" runat="server" DataKeyNames="OP" OnItemCommand="lvnewplan_ItemCommand"> 
+                                    <LayoutTemplate>                
+                                        <table id="itemPlaceholderContainer" runat="server" border="1" class="table">
+                                            <thead>
+                                                <tr runat="server" class="table-secondary justify-content-center">
+                                                    <th runat="server" class="text-center">OP</th>
+                                                    <th runat="server" class="text-center">Produto</th>
+                                                    <th runat="server" class="text-center left-border">Desenho</th>
+                                                    <th runat="server" class="text-center">Posição</th>
+                                                    <th runat="server" class="text-center">Cotas</th>
+                                                    <th runat="server" class="text-center">PDF</th>
+                                                    <th runat="server" class="text-center">XLT</th>
+                                                    <th runat="server"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="itemPlaceholder" runat="server">
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </LayoutTemplate>                            
+                                    <ItemTemplate>
+                                        <tr class="table-light">
+                                            <td class="text-center">
+                                                <asp:Label ID="OPLabel" runat="server" Text='<%# Eval("OP") %>' />
+                                            </td>
+                                            <td class="text-center">
+                                                <asp:Label ID="ProdutoLabel" runat="server" Text='<%# Eval("Produto") %>' />
+                                            </td>
+                                            <td class="text-center left-border">
+                                                <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
+                                            </td>
+                                            <td class="text-center">
+                                                <asp:Label ID="PosicaoLabel" runat="server" Text='<%# Eval("Posicao") %>' />
+                                            </td>
+                                            <td class="text-center">
+                                                <asp:Label ID="CotasLabel" runat="server" Text='<%# Eval("Cotas") %>' />
+                                            </td>
+                                            <td class="text-center">
+                                                <asp:Label ID="PDFLabel" runat="server" Text='<%# Eval("PDF") %>' />
+                                            </td>
+                                            <td class="text-center pe-0">
+                                                <asp:Label ID="XLTLabel" runat="server" Text='<%# Eval("XLT") %>' />
+                                            </td>
+                                            <td class="ps-0">
+                                                <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("OP")%>'><img src="../Src/img/remove.png" alt="Remover" /></asp:LinkButton>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>                        
+                                </asp:ListView>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>                        
+                    </div>
+
+                    <div class="modal-footer" style="background-color:rgba(0,0,0,0.3)">
+                        <asp:Button ID="Button3" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
+                        <asp:Button ID="Button4" class="btn btn-outline-success" runat="server" Text="Confirmar" ValidationGroup="OK" />                        
                     </div>
                 </div>
             </div>

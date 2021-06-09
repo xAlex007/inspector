@@ -9,6 +9,8 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_plans : System.Web.UI.Page
 {
+    public static DataTable data { get; set; }
+
     private void Reload()
     {
         Response.Redirect(Request.RawUrl);
@@ -35,9 +37,10 @@ public partial class Pages_plans : System.Web.UI.Page
         PlanosDB db = new PlanosDB();
         DataSet ds = new DataSet();
         ds = db.Filter(i_op6.Text);
-        DataTable data = ds.Tables[0];
-        GridView1.DataSource = data;
-        GridView1.DataBind();
+        data = ds.Tables[0];
+        lvnewplan.DataSource = data;
+        lvnewplan.DataBind();
+        ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#confirmModal').modal('show')", true);
         /*Template template = new Template();
         template.Produto = i_produto.Text;
         template.Desenho = i_desenho.Text;
@@ -104,5 +107,13 @@ public partial class Pages_plans : System.Web.UI.Page
             default:
                 break;
         }*/
+    }
+
+    protected void lvnewplan_ItemCommand(object sender, ListViewCommandEventArgs e)
+    {
+        data.Rows[e.Item.DataItemIndex].Delete();
+        data.AcceptChanges();
+        lvnewplan.DataSource = data;
+        lvnewplan.DataBind();
     }
 }

@@ -85,6 +85,10 @@ h1 {
 }
 /*#endregion */
 
+.left-border{
+    border-left: 3px dashed #0066ff;
+}
+
 .text-small {
     font-size: 0.8em;
 }

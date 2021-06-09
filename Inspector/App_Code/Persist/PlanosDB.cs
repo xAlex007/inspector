@@ -79,9 +79,9 @@ namespace Inspector.Persist
         public DataSet Filter(string op6)
         {
             DataSet ds = new DataSet();
-            string connection = ConfigurationManager.ConnectionStrings["DADOSADV"].ConnectionString;
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT * FROM [dbo].[VIEW_INSPECOES] WHERE OP Like '" + op6 + "%' AND STATUS != 'true' ORDER BY OP";
+            string sql = "SELECT VI.OP, VI.PRODUTO, T.Desenho, T.Posicao, T.Cotas, T.PDF, T.XLT FROM [dbo].[VIEW_INSPECOES] VI INNER JOIN [dbo].[Template] T ON VI.PRODUTO = T.Produto WHERE OP Like '" + op6 + "%' AND STATUS != 'true' ORDER BY OP";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "VIEW_INSPECOES");
