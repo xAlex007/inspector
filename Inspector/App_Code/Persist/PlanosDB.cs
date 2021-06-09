@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -92,8 +89,39 @@ namespace Inspector.Persist
             return ds;
         }
 
-        //Update
-        public bool Update(PlanoInspecao plano)
+        //Status de integração na tabela de integração
+        public bool Integrate(string plano, bool integrationStatus)
+        {
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "";
+            if (integrationStatus == true)
+            {
+                sql = "UPDATE [dbo].[VIEW_INSPECOES] SET STATUS = 'true' WHERE OP = '" + plano + "'";
+            }
+            else
+            {
+                sql = "UPDATE [dbo].[VIEW_INSPECOES] SET STATUS = 'false' WHERE OP = '" + plano + "'";
+            }
+            SqlCommand cmd = new SqlCommand(sql, _context);
+            _context.Open();
+            int m = cmd.ExecuteNonQuery();
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            if (m != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Update - Desabilitado por desuso
+        /*public bool Update(PlanoInspecao plano)
         {
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);            
@@ -113,7 +141,7 @@ namespace Inspector.Persist
             {
                 return false;
             }
-        }
+        }*/
 
         //Delete
         public bool Delete(string op)

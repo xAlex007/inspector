@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -34,6 +31,7 @@ namespace Inspector.Persist
                 return false;
             }
         }
+
         //SelectAll
         public  DataSet SelectAll()
         {
@@ -123,13 +121,11 @@ namespace Inspector.Persist
                 return false;
             }
         }
-        //construtor
 
+        //construtor
         public TemplateDB()
         {
-            //
             // TODO: Add constructor logic here
-            //
         }
 
     }

@@ -62,14 +62,11 @@
                         <%# Eval("XLT") %>
                     </div>
                     <div class="col-sm">
-                        <asp:LinkButton ID="lbAlterar" class="btn btn-outline-primary btn-sm" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("OP")%>'>Alterar</asp:LinkButton>
                         <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("OP")%>'>Excluir</asp:LinkButton>
                     </div>
                 </div>
             </ItemTemplate>
         </asp:ListView>
-
-        
 
         <!--Modal Novo Plano-->
         <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -86,14 +83,14 @@
                     </div>
 
                     <div class="modal-footer" style="background-color:rgba(0,0,0,0.3)">
-                        <asp:Button ID="Button1" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
-                        <asp:Button ID="Button2" class="btn btn-outline-success" runat="server" Text="OK" ValidationGroup="OK" OnClick="bOK_Click"/>                        
+                        <asp:Button ID="bCancel" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
+                        <asp:Button ID="bOK" class="btn btn-outline-success" runat="server" Text="OK" ValidationGroup="OK" OnClick="bOK_Click"/>                        
                     </div>
                 </div>
             </div>
         </div>
 
-        <!--Modal Confirmar Plano-->
+        <!--Modal Confirmar Plano-->        
         <div class="modal fade" id="confirmModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -106,8 +103,8 @@
                         <br />
                         <br />
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                            <ContentTemplate>                                
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">        
+                            <ContentTemplate>
                                 <asp:ListView ID="lvnewplan" runat="server" DataKeyNames="OP" OnItemCommand="lvnewplan_ItemCommand"> 
                                     <LayoutTemplate>                
                                         <table id="itemPlaceholderContainer" runat="server" border="1" class="table">
@@ -153,18 +150,18 @@
                                                 <asp:Label ID="XLTLabel" runat="server" Text='<%# Eval("XLT") %>' />
                                             </td>
                                             <td class="ps-0">
-                                                <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("OP")%>'><img src="../Src/img/remove.png" alt="Remover" /></asp:LinkButton>
+                                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Src/img/remove.png" AlternateText="Remover" />
                                             </td>
                                         </tr>
                                     </ItemTemplate>                        
-                                </asp:ListView>
+                                </asp:ListView>                                
                             </ContentTemplate>
-                        </asp:UpdatePanel>                        
+                        </asp:UpdatePanel>
                     </div>
 
                     <div class="modal-footer" style="background-color:rgba(0,0,0,0.3)">
-                        <asp:Button ID="Button3" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
-                        <asp:Button ID="Button4" class="btn btn-outline-success" runat="server" Text="Confirmar" ValidationGroup="OK" />                        
+                        <asp:Button ID="bCancel2" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
+                        <asp:Button ID="bConfirm" class="btn btn-outline-success" runat="server" Text="Confirmar" OnClick="bConfirm_Click" />                        
                     </div>
                 </div>
             </div>
