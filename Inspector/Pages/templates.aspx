@@ -8,30 +8,30 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" Runat="Server">
     <div class="block" style="width:100vw"> 
-        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success buttonuser" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false" style=" margin-left: 50px; margin-right: 50px; margin-top: 100px"/>
+        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false"/>
         <asp:SqlDataSource ID="Templates" runat="server" ConnectionString="<%$ ConnectionStrings:InspectorDB %>" SelectCommand="SELECT * FROM [Template]"></asp:SqlDataSource>
         <asp:ListView ID="lvtemplates" runat="server" DataSourceID="Templates" OnItemCommand="lvtemplates_ItemCommand">
             <LayoutTemplate>
-                <div class="row bg-body" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px; background-color: rgba(0,0,0,0.08);">
-                    <div class="col-sm heading py-2" style="background-color: rgba(0,0,0,0.2);">
+                <div class="row bg-body" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px">
+                    <div class="col-sm heading">
                         Produto
                     </div>
-                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
+                    <div class="col-md heading">
                         Desenho
                     </div>
-                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);"> 
+                    <div class="col-md heading">
                         Posição
                     </div>
-                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
+                    <div class="col-md heading">
                         Nº Cotas
                     </div>
-                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
+                    <div class="col-md heading">
                         Anexo PDF
                     </div>
-                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
+                    <div class="col-md heading">
                         Anexo XLT
                     </div>
-                    <div class="col-sm heading py-2" style="background-color: rgba(0,0,0,0.2);">
+                    <div class="col-sm heading">
                         Ações
                     </div>
                 </div>      
@@ -39,7 +39,7 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <div class="row border-bottom" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; background-color: rgba(0,0,0,0.08);">
+                <div class="row bg-light border" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px">
                     <div class="col-sm">
                         <%# Eval("Produto") %>
                     </div>
@@ -70,8 +70,8 @@
         <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color:rgba(0,0,0,0.3)">
-                        <h4 class="modal-title" id="staticBackdropLabel"><strong style="font-family: mina; margin-left: 135px; font-size:27px">Novo Template</strong></h4>
+                    <div class="modal-header justify-content-center" style="background-color:rgba(0,0,0,0.3)">
+                        <h4 class="modal-title fw-bold" id="staticBackdropLabel">Novo Template</h4>
                     </div>
 
                     <div class="modal-body" style="background-color:rgba(0,0,0,0.15)">
@@ -143,11 +143,11 @@
                         <br />
                         <asp:Label ID="el_xlt" runat="server" Text="XLT:"></asp:Label>
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                            <ContentTemplate>                                
+                            <ContentTemplate>                               
                                 <asp:PlaceHolder ID="ph_xlt" runat="server" ></asp:PlaceHolder>
                                 <asp:LinkButton ID="b_rmvxlt" runat="server" OnClick="b_rmvxlt_Click" CssClass="remove-button"><asp:Image runat="server" ImageUrl="~/Src/img/remove.png" Height="24"/></asp:LinkButton>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>                        
+                             </ContentTemplate>
+                        </asp:UpdatePanel>                       
                     </div>
 
                     <div class="modal-footer" style="background-color:rgba(0,0,0,0.3)">

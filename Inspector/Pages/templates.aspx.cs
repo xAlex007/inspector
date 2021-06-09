@@ -3,7 +3,6 @@ using Inspector.Persist;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -234,28 +233,6 @@ public partial class Pages_templates : System.Web.UI.Page
         Template template = db.Select(produto);
         switch (e.CommandName)
         {
-            case "Alterar":                
-                ei_produto.Text = template.Produto;
-                ei_desenho.Text = template.Desenho;
-                ei_pos.Text = template.Posicao;
-                ei_cotas.Text = Convert.ToString(template.Cotas);
-                ControlCache.Clear();
-                #region ei_pdf.Text = template.PDF;
-                Label ei_pdf = new Label();
-                ei_pdf.ID = "ei_pdf";
-                ei_pdf.Text = template.PDF;
-                ph_pdf.Controls.Add(ei_pdf);
-                ControlCache.Add(ei_pdf);
-                #endregion
-                #region ei_xlt.Text = template.XLT;
-                Label ei_xlt = new Label();
-                ei_xlt.ID = "ei_xlt";
-                ei_xlt.Text = template.XLT;
-                ph_xlt.Controls.Add(ei_xlt);
-                ControlCache.Add(ei_xlt);
-                #endregion
-                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#editModal').modal('show')", true);
-                break;
             case "Deletar":
                 Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
                 Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");

@@ -4,12 +4,10 @@
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" runat="Server">
-    <main>
-
-        <div class="row" style="margin-top: 200px; --bs-gutter-x: 0;">
+    <div class="row" style="margin-top: 200px; --bs-gutter-x: 0;">
 
             <%--Opções de inspeção--%>
-                <div class="rounded col-md-6 col-6 col-lg-6 col-sm-6" style="margin-left: 360px; margin-right: 50px; border: 3px solid #4ED84B; --bs-gutter-x: 0; background-color: rgb(0,0,0,0.05); width: 550px; height: 400px;">
+                <div class="rounded col-md-6 col-6 col-lg-6 col-sm-6" style="margin-left: 300px; margin-right: 50px; border: 3px solid #4ED84B; --bs-gutter-x: 0; background-color: rgb(0,0,0,0.05); width: 550px; height: 400px;">
                     <div class="row pt-5 pb-5">
                         <div class="col-md-2 col-2 item-inspecao-top p-2" style="border: 1px solid #4ED84B; background-color: #4ED84B; border-radius: 1.2rem; margin-left: 125px; margin-top: 15px; height: 110px; width: 110px;">
                             <a href="#">
@@ -59,7 +57,5 @@
                 </div>
 
         </div>
-
-    </main>
 </asp:Content>
 

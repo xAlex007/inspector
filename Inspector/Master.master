@@ -24,23 +24,23 @@
     <form id="form1" runat="server">
         <header runat="server">
             <!--Navbar-->
-            <nav class="navbar nav-cecal d-flex justify-content-center justify-content-md-between">
-                <div class="container-fluid px-1 px-md-3">
-                    <a class="navbar-brand ms-sm-0 ms-md-3" href="../Pages/home.aspx">
+            <nav class="navbar nav-cecal d-flex justify-content-between">
+                <div class="container-fluid px-0 px-md-3">
+                    <a class="navbar-brand ms-sm-0 ms-md-3 ps-2 ps-md-0" href="../Pages/home.aspx">
                         <img src="../Src/img/logo.png" class="logo-cecal img-fluid" height="48" width="180" alt="Logo Cecal">
                     </a>
-                    <div class="container-fluid-nav text-center">
+                    <div class="container-fluid-nav text-center md title">
                         <h1>INSPECTOR</h1>
                     </div>                
-                    <div id="userbtn" style="width:180px;" class="d-sm-flex flex-row-reverse" runat="server" visible="false">
+                    <div id="userbtn" style="width:180px;" class="d-flex flex-row-reverse pe-4 pe-md-0" runat="server" visible="false">
                         <div class="btn-group me-sm-0 me-md-3 align-self-end">
                           <button type="button" class="dropbtn btn btn-light rounded-circle" data-bs-toggle="dropdown" aria-expanded="false">
                               <asp:Label ID="usrini" runat="server"></asp:Label>
                           </button>
-                          <ul class="dropdown-menu dropdown-content dropdown-menu-md-end pt-0">
+                          <ul class="dropdown-menu dropdown-content dropdown-menu-end pt-0">
                             <li class="card-header"><asp:Label ID="greet" runat="server"></asp:Label></li>
                             <li><asp:PlaceHolder ID="ph_usr" runat="server"></asp:PlaceHolder></li>
-                            <li><asp:Button ID="b_logout" CssClass="dropdown-item" runat="server" Text="Sair" OnClick="b_logout_Click"/></li>
+                            <li><asp:LinkButton ID="b_logout" CssClass="dropdown-item" OnClick="b_logout_Click" runat="server"><img class="pb-1" src="../Src/img/logout.png" height="32"/>&nbspSair</asp:LinkButton></li>
                           </ul>
                         </div>
                     </div>
