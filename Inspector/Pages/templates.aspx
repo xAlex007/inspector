@@ -1,38 +1,37 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="templates.aspx.cs" Inherits="Pages_templates" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" Runat="Server">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        
+    </script>
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" Runat="Server">
-    <main> 
-        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false" style=" margin-left: 50px; margin-right: 50px; margin-top: 100px"/>
+    <div class="block" style="width:100vw"> 
+        <asp:Button ID="b_newtemplate" Class="btn btn-outline-success buttonuser" Text="Novo" runat="server" OnClick="b_newtemplate_Click" CausesValidation="false" style=" margin-left: 50px; margin-right: 50px; margin-top: 100px"/>
         <asp:SqlDataSource ID="Templates" runat="server" ConnectionString="<%$ ConnectionStrings:InspectorDB %>" SelectCommand="SELECT * FROM [Template]"></asp:SqlDataSource>
         <asp:ListView ID="lvtemplates" runat="server" DataSourceID="Templates" OnItemCommand="lvtemplates_ItemCommand">
             <LayoutTemplate>
-                <div class="row bg-body" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px">
-                    <div class="col-sm heading">
+                <div class="row bg-body" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px; background-color: rgba(0,0,0,0.08);">
+                    <div class="col-sm heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Produto
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Desenho
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);"> 
                         Posição
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Nº Cotas
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Anexo PDF
                     </div>
-                    <div class="col-md heading">
+                    <div class="col-md heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Anexo XLT
                     </div>
-                    <div class="col-sm heading">
+                    <div class="col-sm heading py-2" style="background-color: rgba(0,0,0,0.2);">
                         Ações
                     </div>
                 </div>      
@@ -40,24 +39,24 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <div class="row bg-light border" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; margin-top: 10px">
+                <div class="row border-bottom" style="--bs-gutter-x: 0; margin-left: 50px; margin-right: 50px; background-color: rgba(0,0,0,0.08);">
                     <div class="col-sm">
-                        '<%# Eval("Produto") %>'
+                        <%# Eval("Produto") %>
                     </div>
                     <div class="col-md">
-                        '<%# Eval("Desenho") %>'
+                        <%# Eval("Desenho") %>
                     </div>
                     <div class="col-md">
-                        '<%# Eval("Posicao") %>'
+                        <%# Eval("Posicao") %>
                     </div>
                     <div class="col-md">
-                        '<%# Eval("Cotas") %>'
+                        <%# Eval("Cotas") %>
                     </div>
                     <div class="col-md">
-                        '<%# Eval("PDF") %>'
+                        <%# Eval("PDF") %>
                     </div>
                     <div class="col-md">
-                        '<%# Eval("XLT") %>'
+                        <%# Eval("XLT") %>
                     </div>
                     <div class="col-sm">
                         <asp:LinkButton ID="lbAlterar" class="btn btn-outline-primary btn-sm" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("Produto")%>'>Alterar</asp:LinkButton>
@@ -65,43 +64,43 @@
                     </div>
                 </div>
             </ItemTemplate>
-        </asp:ListView>        
+        </asp:ListView>
 
         <!--Modal Novo Template-->
         <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color:rgb(0,0,0,0.3)">
+                    <div class="modal-header" style="background-color:rgba(0,0,0,0.3)">
                         <h4 class="modal-title" id="staticBackdropLabel"><strong style="font-family: mina; margin-left: 135px; font-size:27px">Novo Template</strong></h4>
                     </div>
 
-                    <div class="modal-body" style="background-color:rgb(0,0,0,0.15)">
+                    <div class="modal-body" style="background-color:rgba(0,0,0,0.15)">
                         <asp:Label ID="l_produto" runat="server" Text="Produto:"></asp:Label>
                         <asp:TextBox ID="i_produto" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_produto" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_produto" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="l_desenho" runat="server" Text="Desenho:"></asp:Label>
                         <asp:TextBox ID="i_desenho" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_desenho" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_desenho" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="l_pos" runat="server" Text="Posição:"></asp:Label>
                         <asp:TextBox ID="i_pos" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_pos" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_pos" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="l_cotas" runat="server" Text="Nº Cotas:"></asp:Label>
                         <asp:TextBox ID="i_cotas" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_cotas" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_cotas" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="l_pdf" runat="server" Text="PDF:"></asp:Label>
-                        <asp:TextBox ID="i_pdf" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_pdf" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <asp:FileUpload ID="i_pdf" runat="server" accept=".pdf" />                  
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_pdf" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                         <br />
-                        <asp:Label ID="l_xlt" runat="server" Text="XLT:"></asp:Label>
-                        <asp:TextBox ID="i_xlt" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_xlt" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <asp:Label ID="l_xlt" runat="server" Text="XLT:"></asp:Label>                      
+                        <asp:FileUpload ID="i_xlt" runat="server" accept=".xlt"/>              
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_xlt" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                     </div>
 
-                    <div class="modal-footer" style="background-color:rgb(0,0,0,0.3)">
+                    <div class="modal-footer" style="background-color:rgba(0,0,0,0.3)">
                         <asp:Button ID="Button4" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
                         <asp:Button ID="Button1" class="btn btn-outline-success" runat="server" Text="Salvar" ValidationGroup="Save" OnClick="bSave_Click"/>                        
                     </div>
@@ -110,13 +109,13 @@
         </div>
         
         <!--Modal Editar Template-->
-                <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+        <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color:rgb(0,0,0,0.3)">
+                    <div class="modal-header" style="background-color:rgba(0,0,0,0.3)">
                         <h4 class="modal-title" id="staticBackdropLabel2"><strong style="font-family: mina; margin-left: 136px; font-size:27px">Editar template</strong></h4>
                     </div>
-                    <div class="modal-body" style="background-color:rgb(0,0,0,0.15)">
+                    <div class="modal-body" style="background-color:rgba(0,0,0,0.15)">
                         <asp:Label ID="el_produto" runat="server" Text="Produto:"></asp:Label>
                         <asp:TextBox ID="ei_produto" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>                        
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_produto" ValidationGroup="Edit"></asp:RequiredFieldValidator>
@@ -134,22 +133,31 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_cotas" ValidationGroup="Edit"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="el_pdf" runat="server" Text="PDF:"></asp:Label>
-                        <asp:TextBox ID="ei_pdf" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_pdf" ValidationGroup="Edit"></asp:RequiredFieldValidator>
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>                                
+                                <asp:PlaceHolder ID="ph_pdf" runat="server" ></asp:PlaceHolder>
+                                <asp:LinkButton ID="b_rmvpdf" runat="server" OnClick="b_rmvpdf_Click" CssClass="remove-button"><asp:Image runat="server" ImageUrl="~/Src/img/remove.png" Height="24"/></asp:LinkButton>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                         <br />
                         <asp:Label ID="el_xlt" runat="server" Text="XLT:"></asp:Label>
-                        <asp:TextBox ID="ei_xlt" CssClass="form-control" runat="server"></asp:TextBox>                        
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_xlt" ValidationGroup="Edit"></asp:RequiredFieldValidator>
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                            <ContentTemplate>                                
+                                <asp:PlaceHolder ID="ph_xlt" runat="server" ></asp:PlaceHolder>
+                                <asp:LinkButton ID="b_rmvxlt" runat="server" OnClick="b_rmvxlt_Click" CssClass="remove-button"><asp:Image runat="server" ImageUrl="~/Src/img/remove.png" Height="24"/></asp:LinkButton>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>                        
                     </div>
 
-                    <div class="modal-footer" style="background-color:rgb(0,0,0,0.3)">
+                    <div class="modal-footer" style="background-color:rgba(0,0,0,0.3)">
                         <asp:Button ID="Button3" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click"/>
                         <asp:Button ID="Button2" class="btn btn-outline-success" runat="server" Text="Salvar" ValidationGroup="Edit" OnClick="bEdit_Click"/>                        
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 </asp:Content>
 
 

@@ -9,31 +9,7 @@ public partial class Index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-    }
-
-    protected void bLogin_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void btnLogar_Click(object sender, EventArgs e)
-    {
-        logar();
-    }
-
-    public void logar()
-    {
-        /*if (UsuarioDB.ValidarUsuario(UserName.Text, txtSenha.Text))
-        {
-            Response.Redirect("~/Default.aspx");
-        }
-        else
-        {
-            this.ExibirAlerta(Mensagem.TipoMensagem.Alerta, "Usuario não existe");
-            return;
-        } */
-        
+     
     }
 
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
@@ -83,6 +59,8 @@ public partial class Index : System.Web.UI.Page
                         if (!obj.IsBlock)
                         {
                             Session["Nivel"] = reader["Nivel"];
+                            Session["Ini"] = Convert.ToString(reader["Nome"]).Substring(0, 1) + Convert.ToString(reader["Nome"]).Substring(Convert.ToString(reader["Nome"]).IndexOf(" ") + 1, 1);
+
                             retorno = "OK";
                         }
                         else

@@ -1,21 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="home.aspx.cs" Inherits="Pages_home" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://codepen.io/chocochip/pen/zYxMgRG"></script>
-    <link href="../Content/StyleSheet.css" rel="stylesheet" />
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="render" runat="Server">
+<asp:Content ID="Body" ContentPlaceHolderID="render" runat="Server">
     <main>
 
         <div class="row" style="margin-top: 200px; --bs-gutter-x: 0;">
 
             <%--Opções de inspeção--%>
-                <div class="rounded col-md-6 col-6 col-lg-6 col-sm-6" style="margin-left: 300px; margin-right: 50px; border: 3px solid #4ED84B; --bs-gutter-x: 0; background-color: rgb(0,0,0,0.05); width: 550px; height: 400px;">
+                <div class="rounded col-md-6 col-6 col-lg-6 col-sm-6" style="margin-left: 360px; margin-right: 50px; border: 3px solid #4ED84B; --bs-gutter-x: 0; background-color: rgb(0,0,0,0.05); width: 550px; height: 400px;">
                     <div class="row pt-5 pb-5">
                         <div class="col-md-2 col-2 item-inspecao-top p-2" style="border: 1px solid #4ED84B; background-color: #4ED84B; border-radius: 1.2rem; margin-left: 125px; margin-top: 15px; height: 110px; width: 110px;">
                             <a href="#">
