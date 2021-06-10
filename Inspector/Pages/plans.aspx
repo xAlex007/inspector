@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </ItemTemplate>
-        </asp:ListView>
+        </asp:ListView>        
 
         <!--Modal Novo Plano-->
         <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -136,7 +136,7 @@
                                                 <asp:Label ID="ProdutoLabel" runat="server" Text='<%# Eval("Produto") %>' />
                                             </td>
                                             <td style="padding-left:1.5em;">
-                                                <asp:TextBox CssClass="form-control" style="text-align: center; font-size:15px;" Width="60" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtPeca" CssClass="form-control" style="text-align: center; font-size:15px;" Width="60" runat="server"></asp:TextBox>
                                             </td>
                                             <td class="text-center left-border">
                                                 <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
@@ -158,7 +158,7 @@
                                             </td>
                                         </tr>
                                     </ItemTemplate>                        
-                                </asp:ListView>                                
+                                </asp:ListView>                    
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>

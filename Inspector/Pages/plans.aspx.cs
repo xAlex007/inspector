@@ -1,6 +1,7 @@
 ﻿using Inspector.Classes;
 using Inspector.Persist;
 using System;
+using System.Linq;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -52,17 +53,28 @@ public partial class Pages_plans : System.Web.UI.Page
         Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         string created = "";
         bool fail = false;
-        int j = 0;
+        int j = 0, k = 0;
         data.Columns.Add("QtPecas", typeof(Int32));
         try
         {
+            foreach (ListViewItem row in lvnewplan.Items)
+            {
+                switch (row.ItemType)
+                {
+                    case ListViewItemType.DataItem:
+                        data.Rows[k][7] = Convert.ToInt32(((TextBox)row.FindControl("txtPeca")).Text);
+                        k++;
+                        break;
+                }
+            }
+
             foreach (DataRow i in data.Rows)
             {
                 PlanoInspecao plano = new PlanoInspecao();
                 plano.OP = (string)data.Rows[data.Rows.IndexOf(i)][0];
                 plano.Produto = (string)data.Rows[data.Rows.IndexOf(i)][1];
-                plano.QtPecas = Convert.ToInt32((string)data.Rows[data.Rows.IndexOf(i)][2]);
-                //Continuar aqui
+                plano.QtPecas = Convert.ToInt32(data.Rows[data.Rows.IndexOf(i)][7]);
+
                 PlanosDB db = new PlanosDB();
                 if (db.Insert(plano))
                 {
@@ -121,7 +133,7 @@ public partial class Pages_plans : System.Web.UI.Page
         string op = Convert.ToString(e.CommandArgument);
         PlanosDB db = new PlanosDB();
         Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
-        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");                
+        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         try
         {
             db.Delete(op);
@@ -139,12 +151,13 @@ public partial class Pages_plans : System.Web.UI.Page
             l_msgtype.Text += "</div>";
             l_status.Text = "Erro: " + ex.Message;
             ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
-        }        
+        }
     }
 
     protected void lvnewplan_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
-        if (data.Rows.Count > 1) {
+        if (data.Rows.Count > 1)
+        {
             data.Rows[e.Item.DataItemIndex].Delete();
             data.AcceptChanges();
             lvnewplan.DataSource = data;
