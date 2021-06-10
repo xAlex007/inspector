@@ -69,6 +69,15 @@ h1 {
     animation: colors 20s ease infinite;
 }
 
+#l-gradient {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #c8c8c8, #eeeeee, #b3bcbf, #a6bec6);
+    background-size: 300% 300%;
+    animation: colors 20s ease infinite;
+}
 
 @keyframes colors {
     0% {
@@ -195,24 +204,22 @@ h1 {
 }
 /*#endregion */
 
-.style90 {
-    height: 90px;
-}
 
-.item-inspecao-top {
+.item-inspecao {
     border: 1px solid #4ED84B;
     background-color: #4ED84B;
     border-radius: 1.2rem;
-    margin-left: 125px;
-    height: 110px;
-    width: 110px;
 }
 
-.item-inspecao-bot {
-    border: 1px solid #4ED84B;
-    background-color: #4ED84B;
+.item-gerenciamento {
+    border: 1px solid #4B84D8;
+    background-color: #4B84D8;
     border-radius: 1.2rem;
-    margin-left: 125px;
-    height: 110px;
-    width: 110px;
 }
+
+.menu-border{
+    border: 3px solid;
+    border-radius: 0.8rem;
+}
+
+
