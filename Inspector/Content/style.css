@@ -76,7 +76,7 @@ h1 {
     justify-content: center;
     background: linear-gradient(45deg, #c8c8c8, #eeeeee, #b3bcbf, #a6bec6);
     background-size: 300% 300%;
-    animation: colors 20s ease infinite;
+    animation: colors 30s ease infinite;
 }
 
 @keyframes colors {
@@ -203,7 +203,6 @@ h1 {
     background: linear-gradient(225deg, rgba(106,113,120,1) 0%, rgba(208,208,208,1) 75%, rgba(242,242,242,1) 100%);
 }
 /*#endregion */
-
 
 .item-inspecao {
     border: 1px solid #4ED84B;
