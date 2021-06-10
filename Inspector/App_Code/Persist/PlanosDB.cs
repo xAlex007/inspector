@@ -14,7 +14,7 @@ namespace Inspector.Persist
         {
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "INSERT INTO[dbo].[PlanoInspecao]([OP], [Produto]) VALUES('" + plano.OP + "', '" + plano.Produto + "')";
+            string sql = "INSERT INTO[dbo].[PlanoInspecao]([OP], [Produto], [QtPecas]) VALUES('" + plano.OP + "', '" + plano.Produto + "', '" + plano.QtPecas + "')";
             SqlCommand cmd = new SqlCommand(sql, _context);
             _context.Open();
             int m = cmd.ExecuteNonQuery();

@@ -107,11 +107,12 @@
                             <ContentTemplate>
                                 <asp:ListView ID="lvnewplan" runat="server" DataKeyNames="OP" OnItemCommand="lvnewplan_ItemCommand"> 
                                     <LayoutTemplate>                
-                                        <table id="itemPlaceholderContainer" runat="server" border="1" class="table">
+                                        <table id="itemPlaceholderContainer" runat="server" border="1" class="table" style="font-size:15px;">
                                             <thead>
                                                 <tr runat="server" class="table-secondary justify-content-center">
                                                     <th runat="server" class="text-center">OP</th>
                                                     <th runat="server" class="text-center">Produto</th>
+                                                    <th runat="server" class="text-center">Quant. Peças</th>
                                                     <th runat="server" class="text-center left-border">Desenho</th>
                                                     <th runat="server" class="text-center">Posição</th>
                                                     <th runat="server" class="text-center">Cotas</th>
@@ -134,6 +135,9 @@
                                             <td class="text-center">
                                                 <asp:Label ID="ProdutoLabel" runat="server" Text='<%# Eval("Produto") %>' />
                                             </td>
+                                            <td style="padding-left:1.5em;">
+                                                <asp:TextBox CssClass="form-control" style="text-align: center; font-size:15px;" Width="60" runat="server"></asp:TextBox>
+                                            </td>
                                             <td class="text-center left-border">
                                                 <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
                                             </td>
@@ -149,7 +153,7 @@
                                             <td class="text-center pe-0">
                                                 <asp:Label ID="XLTLabel" runat="server" Text='<%# Eval("XLT") %>' />
                                             </td>
-                                            <td class="ps-0">
+                                            <td class="ps-0" style="padding-top:1em">
                                                 <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Src/img/remove.png" AlternateText="Remover" />
                                             </td>
                                         </tr>

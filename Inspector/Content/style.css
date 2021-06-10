@@ -102,6 +102,10 @@ h1 {
     font-size: 0.8em;
 }
 
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
 .createform {
     width: 800px;
     background-color: rgba(0,0,0,0.1);

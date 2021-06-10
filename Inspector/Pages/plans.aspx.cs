@@ -53,6 +53,7 @@ public partial class Pages_plans : System.Web.UI.Page
         string created = "";
         bool fail = false;
         int j = 0;
+        data.Columns.Add("QtPecas", typeof(Int32));
         try
         {
             foreach (DataRow i in data.Rows)
@@ -60,7 +61,8 @@ public partial class Pages_plans : System.Web.UI.Page
                 PlanoInspecao plano = new PlanoInspecao();
                 plano.OP = (string)data.Rows[data.Rows.IndexOf(i)][0];
                 plano.Produto = (string)data.Rows[data.Rows.IndexOf(i)][1];
-
+                plano.QtPecas = Convert.ToInt32((string)data.Rows[data.Rows.IndexOf(i)][2]);
+                //Continuar aqui
                 PlanosDB db = new PlanosDB();
                 if (db.Insert(plano))
                 {

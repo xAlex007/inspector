@@ -15,6 +15,8 @@ namespace Inspector.Classes
         public string OP { get; set; }
         [Required]
         public string Produto { get; set; }
+        [Required]
+        public int QtPecas { get; set; }
         public PlanoInspecao()
         {
             // TODO: Adicionar lógica do construtor aqui
