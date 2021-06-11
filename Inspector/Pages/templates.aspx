@@ -89,11 +89,11 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_cotas" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="l_pdf" runat="server" Text="PDF:"></asp:Label>
-                        <asp:FileUpload ID="i_pdf" runat="server" accept=".pdf" />                  
+                        <asp:FileUpload CssClass="form-control form-control" ID="i_pdf" runat="server" accept=".pdf" />                  
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_pdf" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="l_xlt" runat="server" Text="XLT:"></asp:Label>                      
-                        <asp:FileUpload ID="i_xlt" runat="server" accept=".xlt"/>              
+                        <asp:FileUpload CssClass="form-control form-control-sm" ID="i_xlt" runat="server" accept=".xlt"/>              
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_xlt" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                     </div>
 

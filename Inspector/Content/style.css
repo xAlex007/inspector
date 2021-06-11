@@ -107,8 +107,14 @@ h1 {
 }
 
 .p-center {
-    padding-top: 0.85rem !important;
+    padding-top: 0.9rem !important;
     padding-bottom: 0.6rem !important;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .createform {
@@ -231,5 +237,5 @@ h1 {
 }
 
 .bg-header {
-    background-color: #badbcb;
+    background-color: rgba(25, 135, 84, 0.2);
 }
