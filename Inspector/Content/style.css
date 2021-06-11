@@ -102,8 +102,13 @@ h1 {
     font-size: 0.8em;
 }
 
-.table > tbody > tr > td {
+.table > tbody > tr > td, .vert-mid {
     vertical-align: middle;
+}
+
+.p-center {
+    padding-top: 0.85rem !important;
+    padding-bottom: 0.6rem !important;
 }
 
 .createform {
@@ -225,4 +230,6 @@ h1 {
     border-radius: 0.8rem;
 }
 
-
+.bg-header {
+    background-color: #badbcb;
+}
