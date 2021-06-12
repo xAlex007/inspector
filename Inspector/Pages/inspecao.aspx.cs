@@ -18,7 +18,6 @@ public partial class Pages_plans : System.Web.UI.Page
             ddl_planos.DataValueField = "OP";
             ddl_planos.DataTextField = "OP";
             ddl_planos.DataBind();
-            ddl_planos.SelectedIndex = 0;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#newModal').modal('show')", true);
         }
     }
@@ -28,7 +27,6 @@ public partial class Pages_plans : System.Web.UI.Page
         Response.Redirect("~/Pages/home.aspx");
     }
 
-
     protected void bOK_Click(object sender, EventArgs e)
     {
         PlanosDB db = new PlanosDB();
@@ -36,11 +34,12 @@ public partial class Pages_plans : System.Web.UI.Page
         ds = db.PlanDetails(ddl_planos.SelectedValue);
         if (Convert.ToInt32(ds.Tables[0].Rows[0][6]) < Convert.ToInt32(ds.Tables[0].Rows[0][5]))
         {
+            //Cabeçalho
             l_op.Text = ddl_planos.SelectedValue;
             l_prod.Text = ds.Tables[0].Rows[0][1].ToString();
             l_desp.Text = ds.Tables[0].Rows[0][2].ToString() + " Pos. " + ds.Tables[0].Rows[0][3].ToString();
             l_corr.Text = i_newcorr.Text;
-
+            //Formulário
             for (int i = 1; i <= Convert.ToInt32(ds.Tables[0].Rows[0][4]); i++)
             {
                 Label l_cota = new Label();
@@ -67,30 +66,14 @@ public partial class Pages_plans : System.Web.UI.Page
                 divrow.Controls.Add(divcol1);
                 divrow.Controls.Add(divcol2);
                 pnl_regs.Controls.Add(divrow);
-            }            
+            }
+            ins_head.Attributes["style"] = "display: normal;";
+            ins_data.Attributes["style"] = "display: normal;";
         }
-        
+    }
 
-        //< div class="row row-cols-2">
-            //<div class="col border-end border-success p-center">
-                //<span id = "l_cota" runat="server">Nº COTA</span>                           
-            //</div>
-            //<div class="col centered py-2">
-                //<input id = "l_valor" type="text" class="form-control form-control-sm text-center m-0" style="font-size: 18px; width:120px;" runat="server" />
-            //</div>
-        //</div>
+    protected void bSave_Click(object sender, EventArgs e)
+    {
 
-        //if (data.Rows.Count == 0)
-        //{
-        //    l_msgtype.Text += "<div class='modal-header justify-content-center bg-warning'>";
-        //    l_status.Text = "Aviso: Não há planos a serem criados!";
-        //    l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-        //    l_msgtype.Text += "</div>";
-        //    ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
-        //    return;
-        //}
-        //lvnewplan.DataSource = data;
-        //lvnewplan.DataBind();
-        //ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#confirmModal').modal('show')", true);
     }
 }

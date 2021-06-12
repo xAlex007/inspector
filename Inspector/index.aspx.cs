@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Security;
 using System.Web.UI.WebControls;
+using Inspector.Classes;
 using Inspector.Persist;
 
 public partial class Index : System.Web.UI.Page
