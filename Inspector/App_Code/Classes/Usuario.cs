@@ -23,9 +23,7 @@ namespace Inspector.Classes
         public bool IsBlock { get; set; }
         public Usuario()
         {
-            //
             // TODO: Adicionar lógica do construtor aqui
-            //
         }
     }
 }
