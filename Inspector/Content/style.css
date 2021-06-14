@@ -195,13 +195,13 @@ h1 {
 .item-inspecao {
     border: 1px solid #4ED84B;
     background-color: #4ED84B;
-    border-radius: 1.2rem;
+    border-radius: 1rem;
 }
 
 .item-gerenciamento {
     border: 1px solid #4B84D8;
     background-color: #4B84D8;
-    border-radius: 1.2rem;
+    border-radius: 1rem;
 }
 
 .menu-border {
@@ -270,4 +270,20 @@ table {
     ::-webkit-scrollbar {
         display:none;
     }
+}
+
+.pt-25 {
+    padding-top: .8rem !important;
+    padding-right: .7rem !important;
+    padding-left: .7rem !important;
+    padding-bottom: .7rem !important;
+}
+
+.px-29 {
+    padding-right: .9rem !important;
+    padding-left: .9rem !important;
+}
+
+.pt-32 {
+    padding-top: 1.2rem !important;
 }
