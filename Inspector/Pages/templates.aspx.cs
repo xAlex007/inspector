@@ -2,6 +2,7 @@
 using Inspector.Persist;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -36,6 +37,11 @@ public partial class Pages_templates : System.Web.UI.Page
         {
             ControlCache = null;
         }
+        TemplateDB db = new TemplateDB();
+        DataSet ds =  db.SelectAll();
+        DataTable data = ds.Tables[0];
+        lvtemplates.DataSource = data;
+        lvtemplates.DataBind();
     }
 
     protected void cancel_Click(object sender, EventArgs e)
@@ -50,8 +56,6 @@ public partial class Pages_templates : System.Web.UI.Page
 
     protected void bSave_Click(object sender, EventArgs e)
     {
-        Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
-        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         try
         {
             if (i_pdf.PostedFile.ContentType == "application/pdf" && i_xlt.PostedFile.ContentType == "application/vnd.ms-excel")
@@ -71,44 +75,30 @@ public partial class Pages_templates : System.Web.UI.Page
 
                 TemplateDB db = new TemplateDB();
                 if (db.Insert(template))
-                {                    
-                    l_msgtype.Text += "<div class='modal-header justify-content-center bg-success'>";
-                    l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/success.png' height='32'/></h5>";
-                    l_msgtype.Text += "</div>";
-                    l_status.Text = "Template Nº " + template.Produto + " inserido com sucesso.";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                {
+                    Mensagem.ShowMessage('S', "Template Nº " + template.Produto + " inserido com sucesso.");
                 }
             }
             else
             {
-                l_msgtype.Text += "<div class='modal-header justify-content-center bg-warning'>";
-                l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-                l_msgtype.Text += "</div>";
-                l_status.Text = "Aviso: Um ou mais anexos não são válidos! Tente novamente.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                Mensagem.ShowMessage('A', "Aviso: Um ou mais anexos não são válidos! Tente novamente.");
             }
         }
         catch (Exception ex)
         {
-            l_msgtype.Text += "<div class='modal-header justify-content-center bg-danger'>";
-            l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-            l_msgtype.Text += "</div>";
             if (ex.Message.Contains("Violation of PRIMARY KEY constraint"))
             {
-                l_status.Text = "Erro: Um template para esse produto já existe.";
+                Mensagem.ShowMessage('E', "Erro: Um template para esse produto já existe.");
             }
             else
             {
-                l_status.Text = "Erro: " + ex.Message;
+                Mensagem.ShowMessage('E', "Erro: " + ex.Message);
             }
-            ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
         }
     }
 
     protected void bEdit_Click(object sender, EventArgs e)
     {
-        Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
-        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         try
         {
             bool invalidfile = false;
@@ -166,29 +156,17 @@ public partial class Pages_templates : System.Web.UI.Page
                 TemplateDB db = new TemplateDB();
                 if (db.Update(template))
                 {
-                    l_msgtype.Text += "<div class='modal-header justify-content-center bg-success'>";
-                    l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/success.png' height='32'/></h5>";
-                    l_msgtype.Text += "</div>";
-                    l_status.Text = "Template Nº " + template.Produto + " alterado com sucesso.";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                    Mensagem.ShowMessage('S', "Template Nº " + template.Produto + " alterado com sucesso.");
                 }
             }
             else
             {
-                l_msgtype.Text += "<div class='modal-header justify-content-center bg-warning'>";
-                l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-                l_msgtype.Text += "</div>";
-                l_status.Text = "Aviso: Um ou mais anexos não são válidos! Tente novamente.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                Mensagem.ShowMessage('A', "Aviso: Um ou mais anexos não são válidos! Tente novamente.");
             }
         }
         catch (Exception ex)
         {
-            l_msgtype.Text += "<div class='modal-header justify-content-center bg-danger'>";
-            l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-            l_msgtype.Text += "</div>";
-            l_status.Text = "Erro: " + ex.Message;
-            ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+            Mensagem.ShowMessage('E', "Erro: " + ex.Message);
         }
     }
 
@@ -204,6 +182,7 @@ public partial class Pages_templates : System.Web.UI.Page
         FileUpload ei_pdf = new FileUpload();
         ei_pdf.ID = "ei_pdf";
         ei_pdf.Attributes.Add("accept", ".pdf");
+        ei_pdf.CssClass = "form-control";
         ph_pdf.Controls.Add(ei_pdf);
         ControlCache.Add(ei_pdf);
         b_rmvpdf.Visible = false;
@@ -221,6 +200,7 @@ public partial class Pages_templates : System.Web.UI.Page
         FileUpload ei_xlt = new FileUpload();
         ei_xlt.ID = "ei_xlt";
         ei_xlt.Attributes.Add("accept", ".xlt");
+        ei_xlt.CssClass = "form-control";
         ph_xlt.Controls.Add(ei_xlt);
         ControlCache.Add(ei_xlt);
         b_rmvxlt.Visible = false;
@@ -233,9 +213,29 @@ public partial class Pages_templates : System.Web.UI.Page
         Template template = db.Select(produto);
         switch (e.CommandName)
         {
+            case "Alterar":
+                ei_produto.Text = template.Produto;
+                ei_desenho.Text = template.Desenho;
+                ei_pos.Text = template.Posicao;
+                ei_cotas.Text = Convert.ToString(template.Cotas);
+                ControlCache.Clear();
+                #region ei_pdf.Text = template.PDF;
+                Label ei_pdf = new Label();
+                ei_pdf.ID = "ei_pdf";
+                ei_pdf.Text = template.PDF;
+                ph_pdf.Controls.Add(ei_pdf);
+                ControlCache.Add(ei_pdf);
+                #endregion
+                #region ei_xlt.Text = template.XLT;
+                Label ei_xlt = new Label();
+                ei_xlt.ID = "ei_xlt";
+                ei_xlt.Text = template.XLT;
+                ph_xlt.Controls.Add(ei_xlt);
+                ControlCache.Add(ei_xlt);
+                #endregion
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#editModal').modal('show')", true);
+                break;
             case "Deletar":
-                Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
-                Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
                 try
                 {
                     db.Delete(produto);
@@ -243,23 +243,28 @@ public partial class Pages_templates : System.Web.UI.Page
                     System.IO.File.Delete(delfile);
                     delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.XLT);
                     System.IO.File.Delete(delfile);
-                    l_msgtype.Text += "<div class='modal-header justify-content-center bg-success'>";
-                    l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/success.png' height='32'/></h5>";
-                    l_msgtype.Text += "</div>";
-                    l_status.Text = "Template Nº " + produto + " excluído com sucesso.";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                    Mensagem.ShowMessage('S', "Template Nº " + produto + " excluído com sucesso.");
                 }
                 catch (Exception ex)
                 {
-                    l_msgtype.Text += "<div class='modal-header justify-content-center bg-danger'>";
-                    l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-                    l_msgtype.Text += "</div>";
-                    l_status.Text = "Erro: " + ex.Message;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                    Mensagem.ShowMessage('E', "Erro: " + ex.Message);
                 }
                 break;
             default:
                 break;
         }
     }
-}
+
+    protected void lvtemplates_PagePropertiesChanged(object sender, EventArgs e)
+    {
+       lvtemplates.DataBind();
+    }
+
+    protected void Search_TextChanged(object sender, EventArgs e)
+    {
+        TemplateDB db = new TemplateDB();
+        DataSet ds = db.Search(Search.Text);
+        DataTable data = ds.Tables[0];
+        lvtemplates.DataSource = data;
+        lvtemplates.DataBind();
+    }}

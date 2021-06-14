@@ -24,8 +24,8 @@
     <form id="form1" runat="server">
         <header runat="server">
             <!--Navbar-->
-            <nav class="navbar nav-cecal d-flex justify-content-between">
-                <div class="container-fluid px-0 px-md-3">
+            <nav class="navbar nav-cecal d-flex">
+                <div class="container-fluid px-0 px-md-3 justify-content-evenly justify-content-md-between">
                     <a class="navbar-brand me-0 ms-sm-0 ms-md-3 ps-2 ps-md-0" href="../Pages/home.aspx">
                         <img src="../Src/img/logo.png" class="logo-cecal img-fluid" height="48" width="180" alt="Logo Cecal">
                     </a>

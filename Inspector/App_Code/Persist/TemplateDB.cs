@@ -49,6 +49,23 @@ namespace Inspector.Persist
             return ds;
         }
 
+        //Search
+        public DataSet Search(string produto)
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT * FROM [dbo].[Template] WHERE Produto Like '%" + produto + "%'";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "Template");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
         //Select
         public Template Select(string produto)
         {
@@ -122,11 +139,10 @@ namespace Inspector.Persist
             }
         }
 
-        //construtor
+        //Construtor
         public TemplateDB()
         {
             // TODO: Add constructor logic here
         }
-
     }
 }

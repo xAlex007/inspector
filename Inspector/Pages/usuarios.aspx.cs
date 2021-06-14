@@ -1,27 +1,25 @@
 ﻿using Inspector.Classes;
 using Inspector.Persist;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+using System.Data;
 using System.Web.UI.WebControls;
 
 public partial class Pages_usuarios : System.Web.UI.Page
 {
-    private void Reload()
-    {
-        Response.Redirect(Request.RawUrl);
-    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        UsuarioDB db = new UsuarioDB();
+        DataSet ds = new DataSet();
+        ds = db.SelectAll();
+        DataTable data = ds.Tables[0];        
+        lvusers.DataSource = data;
+        lvusers.DataBind();
     }
 
     protected void cancel_Click(object sender, EventArgs e)
     {
-        Reload();
+        Response.Redirect(Request.RawUrl);
     }
 
     protected void b_newuser_Click(object sender, EventArgs e)
@@ -40,23 +38,35 @@ public partial class Pages_usuarios : System.Web.UI.Page
         user.Nivel = Convert.ToChar(i_nivel.Text);
         user.IsBlock = false;
 
-
-        if (db.Insert(user))
+        try
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "alert('Salvo com sucesso');", true);
+            if (db.Insert(user))
+            {
+                Mensagem.ShowMessage('S', "Usuário <b>" + i_usuario.Text + "</b> cadastrado com sucesso.");
+            }
+            else
+            {
+                Mensagem.ShowMessage('E', "Erro ao cadastrar. Tente novamente mais tarde.");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "alert('Erro ao salvar.');", true);
+            if (ex.Message.Contains("Violation of UNIQUE KEY constraint"))
+            {
+                Mensagem.ShowMessage('A', "Aviso: Um usuário com esse nome já existe!");
+            }
+            else
+            {
+                Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+            }
         }
-        Reload();
     }
 
     protected void bEdit_Click(object sender, EventArgs e)
     {
         Usuario user = new Usuario();
         UsuarioDB db = new UsuarioDB();
-        
+
         user.Id = Convert.ToInt32(ei_id.Text);
         user.Senha = db.PswHash(ei_senha.Text);
         user.Nome = ei_nome.Text;
@@ -64,15 +74,21 @@ public partial class Pages_usuarios : System.Web.UI.Page
         user.Nivel = Convert.ToChar(ei_nivel.Text);
         user.IsBlock = ei_isblock.Checked;
 
-        if (db.Update(user))
+        try
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "alert('Alterado com sucesso');", true);
+            if (db.Update(user))
+            {
+                Mensagem.ShowMessage('S', "Usuário <b>" + i_usuario.Text + "</b> alterado com sucesso.");
+            }
+            else
+            {
+                Mensagem.ShowMessage('E', "Erro ao alterar. Tente novamente mais tarde.");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "alert('Erro ao alterar.');", true);
+            Mensagem.ShowMessage('E', "Erro: " + ex.Message);
         }
-        Reload();
     }
 
     protected void lvusers_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -93,11 +109,33 @@ public partial class Pages_usuarios : System.Web.UI.Page
                 ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#editModal').modal('show')", true);
                 break;
             case "Deletar":
-                db.Delete(id);
-                Reload();
+                try
+                {
+                    db.Delete(id);
+                    Mensagem.ShowMessage('S', "Usuário excluído com sucesso.");
+                }
+                catch (Exception ex)
+                {
+                    Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+                }
                 break;
             default:
                 break;
         }
+    }
+
+    protected void lvusers_PagePropertiesChanged(object sender, EventArgs e)
+    {
+        lvusers.DataBind();
+    }
+
+    protected void Search_TextChanged(object sender, EventArgs e)
+    {
+        UsuarioDB db = new UsuarioDB();
+        DataSet ds = new DataSet();
+        ds = db.Search(Search.Text);
+        DataTable data = ds.Tables[0];
+        lvusers.DataSource = data;
+        lvusers.DataBind();
     }
 }

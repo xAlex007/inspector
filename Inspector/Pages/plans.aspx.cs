@@ -1,9 +1,7 @@
 ﻿using Inspector.Classes;
 using Inspector.Persist;
 using System;
-using System.Linq;
 using System.Data;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Pages_plans : System.Web.UI.Page
@@ -12,7 +10,11 @@ public partial class Pages_plans : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        PlanosDB db = new PlanosDB();
+        DataSet ds = db.SelectAll();
+        DataTable data = ds.Tables[0];
+        lvplanos.DataSource = data;
+        lvplanos.DataBind();
     }
 
     protected void b_newplano_Click(object sender, EventArgs e)
@@ -27,19 +29,13 @@ public partial class Pages_plans : System.Web.UI.Page
 
     protected void bOK_Click(object sender, EventArgs e)
     {
-        Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
-        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         PlanosDB db = new PlanosDB();
         DataSet ds = new DataSet();
         ds = db.Filter(i_op6.Text);
         data = ds.Tables[0];
         if (data.Rows.Count == 0)
         {
-            l_msgtype.Text += "<div class='modal-header justify-content-center bg-warning'>";
-            l_status.Text = "Aviso: Não há planos a serem criados!";
-            l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-            l_msgtype.Text += "</div>";
-            ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+            Mensagem.ShowMessage('A', "Aviso: Não há planos a serem criados!");
             return;
         }
         lvnewplan.DataSource = data;
@@ -49,8 +45,6 @@ public partial class Pages_plans : System.Web.UI.Page
 
     protected void bConfirm_Click(object sender, EventArgs e)
     {
-        Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
-        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         string created = "";
         bool fail = false;
         int j = 0, k = 0;
@@ -96,35 +90,23 @@ public partial class Pages_plans : System.Web.UI.Page
             if (fail == false)
             {
                 created = created.Remove(created.Length - 1, 1);
-                l_msgtype.Text += "<div class='modal-header justify-content-center bg-success'>";
-                l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/success.png' height='32'/></h5>";
-                l_msgtype.Text += "</div>";
                 if (j > 1)
                 {
-                    l_status.Text = "Planos de inspeção para as ordens" + created + " criados com sucesso.";
+                    Mensagem.ShowMessage('S', "Planos de inspeção para as ordens" + created + " criados com sucesso.");
                 }
                 else
                 {
-                    l_status.Text = "Plano de inspeção para a ordem" + created + " criado com sucesso.";
+                    Mensagem.ShowMessage('S', "Plano de inspeção para a ordem" + created + " criado com sucesso.");
                 }
-                ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
             }
             else
             {
-                l_msgtype.Text += "<div class='modal-header justify-content-center bg-danger'>";
-                l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-                l_msgtype.Text += "</div>";
-                l_status.Text = "Não foi possível salvar. Tente novamente mais tarde.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+                Mensagem.ShowMessage('E', "Não foi possível salvar. Tente novamente mais tarde.");
             }
         }
         catch (Exception ex)
         {
-            l_msgtype.Text += "<div class='modal-header justify-content-center bg-danger'>";
-            l_status.Text = "Erro: " + ex.Message;
-            l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-            l_msgtype.Text += "</div>";
-            ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+            Mensagem.ShowMessage('E', "Erro: " + ex.Message);
         }
     }
 
@@ -138,19 +120,11 @@ public partial class Pages_plans : System.Web.UI.Page
         {
             db.Delete(op);
             db.Integrate(op, false);
-            l_msgtype.Text += "<div class='modal-header justify-content-center bg-success'>";
-            l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/success.png' height='32'/></h5>";
-            l_msgtype.Text += "</div>";
-            l_status.Text = "Plano para a ordem " + op + " excluído com sucesso.";
-            ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+            Mensagem.ShowMessage('S', "Plano para a ordem " + op + " excluído com sucesso.");
         }
         catch (Exception ex)
         {
-            l_msgtype.Text += "<div class='modal-header justify-content-center bg-danger'>";
-            l_msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
-            l_msgtype.Text += "</div>";
-            l_status.Text = "Erro: " + ex.Message;
-            ScriptManager.RegisterStartupScript(this, GetType(), "Mensagem", "Mensagem();", true);
+            Mensagem.ShowMessage('E', "Erro: " + ex.Message);
         }
     }
 
@@ -163,5 +137,19 @@ public partial class Pages_plans : System.Web.UI.Page
             lvnewplan.DataSource = data;
             lvnewplan.DataBind();
         }
+    }
+
+    protected void lvplanos_PagePropertiesChanged(object sender, EventArgs e)
+    {
+        lvplanos.DataBind();
+    }
+
+    protected void Search_TextChanged(object sender, EventArgs e)
+    {
+        PlanosDB db = new PlanosDB();
+        DataSet ds = db.Search(Search.Text);
+        DataTable data = ds.Tables[0];
+        lvplanos.DataSource = data;
+        lvplanos.DataBind();
     }
 }

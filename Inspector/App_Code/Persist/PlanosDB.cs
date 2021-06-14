@@ -38,7 +38,24 @@ namespace Inspector.Persist
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT * FROM [dbo].[PlanoInspecao]";
+            string sql = "SELECT P.OP, P.Produto, P.QtPecas, P.QtTotalizada, T.Desenho, T.Posicao FROM [dbo].PlanoInspecao AS P INNER JOIN [dbo].Template AS T ON P.Produto = T.Produto";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "PlanoInspecao");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
+        //Search
+        public DataSet Search(string op)
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT P.OP, P.Produto, P.QtPecas, P.QtTotalizada, T.Desenho, T.Posicao FROM [dbo].PlanoInspecao AS P INNER JOIN [dbo].Template AS T ON P.Produto = T.Produto WHERE OP Like '%" + op + "%'";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "PlanoInspecao");
@@ -183,10 +200,10 @@ namespace Inspector.Persist
             }
         }
 
+        //Construtor
         public PlanosDB()
         {
             // TODO: Add constructor logic here
         }
-
     }
 }

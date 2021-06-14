@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using Inspector.Classes;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-/// <summary>
-/// Descrição resumida de UsuarioDB
-/// </summary>
-/// 
+
 namespace Inspector.Persist
 {
     public class UsuarioDB
@@ -39,6 +33,41 @@ namespace Inspector.Persist
                 return false;
             }
         }
+
+        //SelectAll
+        public DataSet SelectAll()
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT * FROM [dbo].[Usuario]";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "Usuario");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
+        //Search
+        public DataSet Search(string user)
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT * FROM [dbo].[Usuario] WHERE Username Like '%" + user + "%'";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "Usuario");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
         //Select
         public Usuario Select(int id)
         {
@@ -65,6 +94,7 @@ namespace Inspector.Persist
             _context.Dispose();
             return obj;
         }
+
         //Update
         public bool Update(Usuario user)
         {
@@ -87,6 +117,7 @@ namespace Inspector.Persist
                 return false;
             }
         }
+
         //Delete
         public bool Delete(int id)
         {
@@ -115,6 +146,7 @@ namespace Inspector.Persist
         {
             return Regex.IsMatch(text, "^[a-zA-Z0-9]+$");
         }
+
         //Hashing de Senha
         public string PswHash(string senha)
         {
@@ -128,6 +160,7 @@ namespace Inspector.Persist
             string senhaHash = Convert.ToBase64String(hashBytes);
             return senhaHash;
         }
+
         //Validação Hash de Senha
         public bool HashCompare(string senhabd, string senha)
         {
@@ -144,6 +177,12 @@ namespace Inspector.Persist
                 }
             }
             return true;
+        }
+
+        //Construtor
+        public UsuarioDB()
+        {
+            // TODO: Add constructor logic here
         }
     }
 }
