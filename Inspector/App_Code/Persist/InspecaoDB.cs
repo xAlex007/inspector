@@ -38,7 +38,24 @@ namespace Inspector.Persist
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT * FROM [dbo].[Inspecao]";
+            string sql = "SELECT Corrida, Plano, Inspetor, Horario FROM [dbo].[Inspecao]";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "Inspecao");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
+        //Search
+        public DataSet Search(string corrida)
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT Corrida, Plano, Inspetor, Horario FROM [dbo].[Inspecao] WHERE Corrida Like '%" + corrida + "%'";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "Inspecao");

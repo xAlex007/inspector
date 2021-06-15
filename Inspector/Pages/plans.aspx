@@ -92,7 +92,8 @@
                                     <asp:Label ID="QtPecasLabel" runat="server" Text='<%# Eval("QtPecas") %>' />
                                 </td>
                                 <td class="text-center auto-hide">
-                                    <asp:Label ID="QtTotalizadaLabel" runat="server" Text='<%# Eval("QtTotalizada") %>' />
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="#"><%# Eval("QtTotalizada") %></asp:HyperLink>
+                                    <%--<asp:Label ID="QtTotalizadaLabel" runat="server" Text='<%# Eval("QtTotalizada") %>' />--%>
                                 </td>
                                 <td class="text-center auto-hide">
                                     <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
