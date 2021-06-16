@@ -66,6 +66,40 @@ namespace Inspector.Persist
             return ds;
         }
 
+        //Search by Plan
+        public DataSet SearchByPlan(string op)
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT Corrida, Plano, Inspetor, Horario FROM [dbo].[Inspecao] WHERE Plano Like '%" + op + "%'";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "Inspecao");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
+        //Search by Plan
+        public DataSet SearchHtByPlan(string op, string corrida)
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT Corrida, Plano, Inspetor, Horario FROM [dbo].[Inspecao] WHERE Plano = '" + op + "' AND Corrida Like '%" + corrida + "%'";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "Inspecao");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
         //Select
         public Inspecao Select(string corrida)
         {
@@ -92,12 +126,12 @@ namespace Inspector.Persist
             return obj;
         }        
 
-        //Update - Desabilitado por desuso
-        /*public bool Update(PlanoInspecao plano)
+        //Update
+        public bool Update(Inspecao inspecao)
         {
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);            
-            string sql = "UPDATE [dbo].[PlanoInspecao] SET Produto = '" + plano.Produto + "' WHERE OP = '" + plano.OP + "'";
+            string sql = "UPDATE [dbo].[Inspecao] SET Modificado = '" + inspecao.Modificado + "' WHERE Corrida = '" + inspecao.Corrida + "'";
             SqlCommand cmd = new SqlCommand(sql, _context);
             _context.Open();
             int m = cmd.ExecuteNonQuery();
@@ -113,7 +147,7 @@ namespace Inspector.Persist
             {
                 return false;
             }
-        }*/
+        }
 
         //Delete
         public bool Delete(string corrida)

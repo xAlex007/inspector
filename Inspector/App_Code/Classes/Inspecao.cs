@@ -16,6 +16,7 @@ namespace Inspector.Classes
         public string Inspetor { get; set; }
         [Required]
         public DateTime Horario { get; set; }
+        public DateTime Modificado { get; set; }
         public ICollection<ValoresInspecao> ValoresInspecoes { get; set; }
         public Inspecao()
         {

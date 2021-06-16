@@ -28,11 +28,11 @@
                             <asp:HyperLink class="item-inspecao pt-3 px-3" NavigateUrl="~/Pages/inspecao.aspx" ToolTip="Registrar Inspeções" runat="server"><asp:Image ImageUrl="~/Src/img/caliper.png" AlternateText="Registrar Inspeções" ToolTip="Registrar Inspeções" style="height: 70px;" runat="server" /></asp:HyperLink>
                         </div>
                         <div class="col d-flex justify-content-start">
-                            <asp:HyperLink class="item-inspecao p-2" NavigateUrl="#" ToolTip="Visualização de Desenhos" runat="server"><asp:Image ImageUrl="~/Src/img/school-supplies.png" AlternateText="Visualização de Desenhos" ToolTip="Visualização de Desenhos" style="height: 85px;" runat="server" /></asp:HyperLink>
+                            <asp:HyperLink class="item-inspecao py-3 px-3" NavigateUrl="~/Pages/inspecoes.aspx" ToolTip="Relatório de Inspeção" runat="server"><asp:Image ImageUrl="~/Src/img/agreement.png" AlternateText="Relatório de Inspeção" ToolTip="Relatório de Inspeção" style="height: 70px;" runat="server" /></asp:HyperLink>
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <asp:HyperLink class="item-inspecao pt-32 px-3" NavigateUrl="#" ToolTip="Relatório de Inspeção" runat="server"><asp:Image ImageUrl="~/Src/img/agreement.png" AlternateText="Relatório de Inspeção" ToolTip="Relatório de Inspeção" style="height: 70px;" runat="server" /></asp:HyperLink>
-                        </div>
+                            <asp:HyperLink class="item-inspecao p-2" NavigateUrl="#" ToolTip="Visualização de Desenhos" runat="server"><asp:Image ImageUrl="~/Src/img/school-supplies.png" AlternateText="Visualização de Desenhos" ToolTip="Visualização de Desenhos" style="height: 85px;" runat="server" /></asp:HyperLink>
+                        </div>                        
                         <div class="col d-flex justify-content-start">
                             <asp:HyperLink class="item-inspecao py-3 px-3" NavigateUrl="#" ToolTip="Não Conformidade" runat="server"><asp:Image class="mt-1" ImageUrl="~/Src/img/high-priority.png" AlternateText="Não Conformidade" ToolTip="Não Conformidade" style="height: 70px;" runat="server" /></asp:HyperLink>
                         </div>

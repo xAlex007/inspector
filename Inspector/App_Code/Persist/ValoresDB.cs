@@ -51,12 +51,12 @@ namespace Inspector.Persist
             return ds;
         }
 
-        //Update - Desabilitado por desuso
-        /*public bool Update(PlanoInspecao plano)
+        //Update
+        public bool Update(ValoresInspecao valor)
         {
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);            
-            string sql = "UPDATE [dbo].[PlanoInspecao] SET Produto = '" + plano.Produto + "' WHERE OP = '" + plano.OP + "'";
+            string sql = "UPDATE [dbo].[ValoresInspecao] SET ValorMedido = '" + valor.ValorMedido + "' WHERE Corrida = '" + valor.Corrida + "' AND Cota = '" + valor.Cota + "'";
             SqlCommand cmd = new SqlCommand(sql, _context);
             _context.Open();
             int m = cmd.ExecuteNonQuery();
@@ -72,7 +72,7 @@ namespace Inspector.Persist
             {
                 return false;
             }
-        }*/
+        }
 
         //Delete
         public bool Delete(string corrida)

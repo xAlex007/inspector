@@ -11,8 +11,17 @@ public partial class Pages_plans : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         InspecaoDB db = new InspecaoDB();
-        DataSet ds = db.SelectAll();
-        DataTable data = ds.Tables[0];
+        DataTable data = new DataTable();
+        DataSet ds = new DataSet();
+        if (Request.QueryString.Count == 0)
+        {
+            ds = db.SelectAll();
+        }
+        else
+        {
+            ds = db.SearchByPlan(Request.QueryString["plano"]);
+        }
+        data = ds.Tables[0];
         lvinspecoes.DataSource = data;
         lvinspecoes.DataBind();
     }
@@ -112,6 +121,29 @@ public partial class Pages_plans : System.Web.UI.Page
 
     protected void lvinspecoes_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
+        switch (e.CommandName)
+        {
+            case "Detalhes":
+                Response.Redirect("~/Pages/inspecao.aspx?corrida=" + e.CommandArgument);
+                break;
+            case "Deletar":
+                //try
+                //{
+                //    db.Delete(produto);
+                //    var delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.PDF);
+                //    System.IO.File.Delete(delfile);
+                //    delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.XLT);
+                //    System.IO.File.Delete(delfile);
+                //    Mensagem.ShowMessage('S', "Template Nº " + produto + " excluído com sucesso.");
+                //}
+                //catch (Exception ex)
+                //{
+                //    Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+                //}
+                //break;
+            default:
+                break;
+        }
         //string op = Convert.ToString(e.CommandArgument);
         //PlanosDB db = new PlanosDB();
         //Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
@@ -147,7 +179,15 @@ public partial class Pages_plans : System.Web.UI.Page
     protected void Search_TextChanged(object sender, EventArgs e)
     {
         InspecaoDB db = new InspecaoDB();
-        DataSet ds = db.Search(Search.Text);
+        DataSet ds = new DataSet();
+        if (Request.QueryString.Count == 0)
+        {
+            ds = db.Search(Search.Text);
+        }
+        else
+        {
+            ds = db.SearchHtByPlan(Request.QueryString["plano"], Search.Text);
+        }        
         DataTable data = ds.Tables[0];
         lvinspecoes.DataSource = data;
         lvinspecoes.DataBind();

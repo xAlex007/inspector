@@ -58,6 +58,7 @@
                 <asp:Panel ID="pnl_regs" CssClass="col-5 text-center border border-success rounded-1 bg-light align-self-start" runat="server"></asp:Panel>
                 <div class="row centered gy-1">
                     <asp:Button ID="bSave" class="btn btn-outline-success pt-2" Width="200" runat="server" Text="Salvar" ValidationGroup="Save" OnClick="bSave_Click" />  
+                    <asp:Button ID="bEdit" class="btn btn-outline-primary pt-2" Width="200" runat="server" Text="Editar" style="display:none;" OnClick="bEdit_Click" />
                 </div>
             </div>
         </div>        
