@@ -45,7 +45,7 @@ public partial class Pages_plans : System.Web.UI.Page
                 oldval.Clear();
                 string corrida;
                 if (Request.QueryString["visualiza"] != null)
-                {                    
+                {
                     corrida = Request.QueryString["visualiza"];
                     bSave.Attributes["style"] = "display: none;";
                 }
@@ -167,7 +167,7 @@ public partial class Pages_plans : System.Web.UI.Page
                 //Cabeçalho
                 GenHead(ddl_planos.SelectedValue, i_newcorr.Text, ds);
                 //Formulário
-                GenForm(Convert.ToInt32(ds.Tables[0].Rows[0][4]), null, false);                
+                GenForm(Convert.ToInt32(ds.Tables[0].Rows[0][4]), null, false);
                 ins_head.Attributes["style"] = "display: normal;";
                 ins_data.Attributes["style"] = "display: normal;";
             }
@@ -193,27 +193,35 @@ public partial class Pages_plans : System.Web.UI.Page
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
         try
         {
-            InspecaoDB db = new InspecaoDB();
+            PlanosDB pdb = new PlanosDB();
+            InspecaoDB idb = new InspecaoDB();
             ValoresDB vdb = new ValoresDB();
             ValoresInspecao valor = new ValoresInspecao();
             //Salvar
             if (edit == false)
             {
-                if (db.Insert(inspecao))
+                if (pdb.Update(inspecao.Plano))
                 {
-                    int i = 1;
-                    foreach (Control c in pnl_regs.Controls)
+                    if (idb.Insert(inspecao))
                     {
-                        valor.Corrida = inspecao.Corrida;
-                        valor.Cota = i;
-                        valor.ValorMedido = float.Parse((c as TextBox).Text.Replace(',', '.'));
-                        if (vdb.Insert(valor) == false)
+                        int i = 1;
+                        foreach (Control c in pnl_regs.Controls)
                         {
-                            vdb.Delete(valor.Corrida);
-                            fail = true;
+                            valor.Corrida = inspecao.Corrida;
+                            valor.Cota = i;
+                            valor.ValorMedido = float.Parse((c as TextBox).Text.Replace(',', '.'));
+                            if (vdb.Insert(valor) == false)
+                            {
+                                vdb.Delete(valor.Corrida);
+                                fail = true;
+                            }
+                            i++;
                         }
-                        i++;
                     }
+                    else
+                    {
+                        fail = true;
+                    }                    
                 }
                 else
                 {
@@ -232,7 +240,7 @@ public partial class Pages_plans : System.Web.UI.Page
             else
             {
                 inspecao.Modificado = DateTime.Now;
-                if (db.Update(inspecao))
+                if (idb.Update(inspecao))
                 {
                     int i = 1, j = 0;
                     foreach (Control c in pnl_regs.Controls)

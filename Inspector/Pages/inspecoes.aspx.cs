@@ -130,20 +130,21 @@ public partial class Pages_plans : System.Web.UI.Page
                 Response.Redirect("~/Pages/inspecao.aspx?edita=" + e.CommandArgument);
                 break;
             case "Deletar":
-                //try
-                //{
+                try
+                {
+                
                 //    db.Delete(produto);
                 //    var delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.PDF);
                 //    System.IO.File.Delete(delfile);
                 //    delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.XLT);
                 //    System.IO.File.Delete(delfile);
                 //    Mensagem.ShowMessage('S', "Template Nº " + produto + " excluído com sucesso.");
-                //}
-                //catch (Exception ex)
-                //{
+                }
+                catch (Exception ex)
+                {
                 //    Mensagem.ShowMessage('E', "Erro: " + ex.Message);
-                //}
-                //break;
+                }
+                break;
             default:
                 break;
         }
