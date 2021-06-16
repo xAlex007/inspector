@@ -130,19 +130,21 @@ public partial class Pages_plans : System.Web.UI.Page
                 Response.Redirect("~/Pages/inspecao.aspx?edita=" + e.CommandArgument);
                 break;
             case "Deletar":
+                string corrida = Convert.ToString(e.CommandArgument);
+                string plano = ((Label)e.Item.FindControl("PlanoLabel")).Text;
+                ValoresDB vdb = new ValoresDB();                
+                InspecaoDB idb = new InspecaoDB();
+                PlanosDB pdb = new PlanosDB();
                 try
                 {
-                
-                //    db.Delete(produto);
-                //    var delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.PDF);
-                //    System.IO.File.Delete(delfile);
-                //    delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.XLT);
-                //    System.IO.File.Delete(delfile);
-                //    Mensagem.ShowMessage('S', "Template Nº " + produto + " excluído com sucesso.");
+                    vdb.Delete(corrida);
+                    idb.Delete(corrida);
+                    pdb.Update(plano, false);                    
+                    Mensagem.ShowMessage('S', "Inspeção para a corrida " + corrida + " excluída com sucesso.", false);
                 }
                 catch (Exception ex)
                 {
-                //    Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+                    Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
                 }
                 break;
             default:
@@ -191,7 +193,7 @@ public partial class Pages_plans : System.Web.UI.Page
         else
         {
             ds = db.SearchHtByPlan(Request.QueryString["plano"], Search.Text);
-        }        
+        }
         DataTable data = ds.Tables[0];
         lvinspecoes.DataSource = data;
         lvinspecoes.DataBind();

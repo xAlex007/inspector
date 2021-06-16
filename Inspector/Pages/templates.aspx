@@ -95,7 +95,7 @@
                                     <asp:Label ID="CotasLabel" runat="server" Text='<%# Eval("Cotas") %>' />
                                 </td>
                                 <td class="text-center">
-                                    <asp:Label ID="PDFLabel" runat="server" Text='<%# Eval("PDF") %>' />
+                                    <asp:HyperLink ID="PDFLink" runat="server" NavigateUrl='<%# Eval("PDF","~/Src/uploaded/{0}") %>'><%# Eval("PDF") %></asp:HyperLink>
                                 </td>
                                 <td class="text-center">
                                     <asp:Label ID="XLTLabel" runat="server" Text='<%# Eval("XLT") %>' />

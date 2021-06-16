@@ -33,7 +33,7 @@ namespace Inspector.Persist
         }
 
         //SelectAll
-        public  DataSet SelectAll()
+        public DataSet SelectAll()
         {
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
@@ -155,11 +155,19 @@ namespace Inspector.Persist
         }
 
         //Update
-        public bool Update(string op)
+        public bool Update(string op, bool add)
         {
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
-            SqlConnection _context = new SqlConnection(connection);            
-            string sql = "UPDATE [dbo].[PlanoInspecao] SET QtTotalizada = QtTotalizada + 1 WHERE OP = '" + op + "'";
+            SqlConnection _context = new SqlConnection(connection);
+            string sql;
+            if (add == true)
+            {
+                sql = "UPDATE [dbo].[PlanoInspecao] SET QtTotalizada = QtTotalizada + 1 WHERE OP = '" + op + "'";
+            }
+            else
+            {
+                sql = "UPDATE [dbo].[PlanoInspecao] SET QtTotalizada = QtTotalizada - 1 WHERE OP = '" + op + "'";
+            }
             SqlCommand cmd = new SqlCommand(sql, _context);
             _context.Open();
             int m = cmd.ExecuteNonQuery();

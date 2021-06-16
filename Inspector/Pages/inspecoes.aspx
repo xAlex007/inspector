@@ -29,9 +29,10 @@
                                 <tbody>
                                     <tr class="table-light">
                                         <td></td>
+                                        <td></td>                                        
                                         <td></td>
                                         <td class="text-center">
-                                            <span class="fw-bold text-secondary" style="position: relative; left: 0.3vw;">Nenhum registro encontrado</span>
+                                            <span class="fw-bold text-secondary" style="position: relative; left: -1.15vw;">Nenhum registro encontrado</span>
                                         </td>
                                         <td></td>
                                         <td></td>

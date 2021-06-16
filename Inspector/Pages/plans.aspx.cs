@@ -114,8 +114,6 @@ public partial class Pages_plans : System.Web.UI.Page
     {
         string op = Convert.ToString(e.CommandArgument);
         PlanosDB db = new PlanosDB();
-        Literal l_msgtype = new Literal(); l_msgtype = (Literal)Master.FindControl("l_msgtype");
-        Label l_status = new Label(); l_status = (Label)Master.FindControl("l_status");
         try
         {
             db.Delete(op);
