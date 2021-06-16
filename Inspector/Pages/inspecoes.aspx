@@ -21,7 +21,8 @@
                                         <th runat="server" class="text-center">Corrida</th>
                                         <th runat="server" class="text-center">Plano</th>
                                         <th runat="server" class="text-center">Inspetor</th>
-                                        <th runat="server" class="text-center">Horário</th>
+                                        <th runat="server" class="text-center">Inspecionado em</th>
+                                        <th runat="server" class="text-center auto-hide">Modificado em</th>
                                         <th runat="server" class="text-center">Ações</th>
                                     </tr>
                                 </thead>
@@ -45,7 +46,8 @@
                                         <th runat="server" class="text-center">Corrida</th>
                                         <th runat="server" class="text-center">Plano</th>
                                         <th runat="server" class="text-center">Inspetor</th>
-                                        <th runat="server" class="text-center">Horário</th>
+                                        <th runat="server" class="text-center">Inspecionado em</th>
+                                        <th runat="server" class="text-center auto-hide">Modificado em</th>
                                         <th runat="server" class="text-center">Ações</th>
                                     </tr>
                                 </thead>
@@ -72,7 +74,7 @@
                             </div>
                         </LayoutTemplate>
                         <ItemTemplate>
-                            <tr class="table-light">                                
+                            <tr class="table-light">
                                 <td class="text-center">
                                     <asp:Label ID="CorridaLabel" runat="server" Text='<%# Eval("Corrida") %>' />
                                 </td>
@@ -85,9 +87,15 @@
                                 <td class="text-center">
                                     <asp:Label ID="HorarioLabel" runat="server" Text='<%# Eval("Horario") %>' />
                                 </td>
-                                <td style="width: 10.4rem;">
-                                    <asp:LinkButton ID="lbDetalhes" class="btn btn-outline-primary btn-sm" runat="server" CommandName="Detalhes" CommandArgument='<%# Bind("Corrida")%>'>Detalhes</asp:LinkButton>
-                                    <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Corrida")%>'>Deletar</asp:LinkButton>
+                                <td class="text-center auto-hide">
+                                    <asp:Label ID="ModificadoLabel" runat="server" Text='<%# Eval("Modificado") %>' />
+                                </td>
+                                <td style="width: 13rem;">
+                                    <div class="btn-group flex-wrap" role="group">
+                                        <asp:LinkButton ID="lbDetalhes" class="btn btn-outline-info btn-sm" runat="server" CommandName="Detalhes" CommandArgument='<%# Bind("Corrida")%>'>Detalhes</asp:LinkButton>
+                                        <asp:LinkButton ID="lbEditar" class="btn btn-outline-primary btn-sm" runat="server" CommandName="Editar" CommandArgument='<%# Bind("Corrida")%>'>Editar</asp:LinkButton>
+                                        <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Corrida")%>'>Deletar</asp:LinkButton>
+                                    </div>
                                 </td>
                             </tr>
                         </ItemTemplate>

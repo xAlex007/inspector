@@ -35,7 +35,7 @@ public partial class Pages_plans : System.Web.UI.Page
         data = ds.Tables[0];
         if (data.Rows.Count == 0)
         {
-            Mensagem.ShowMessage('A', "Aviso: Não há planos a serem criados!");
+            Mensagem.ShowMessage('A', "Aviso: Não há planos a serem criados!", false);
             return;
         }
         lvnewplan.DataSource = data;
@@ -92,21 +92,21 @@ public partial class Pages_plans : System.Web.UI.Page
                 created = created.Remove(created.Length - 1, 1);
                 if (j > 1)
                 {
-                    Mensagem.ShowMessage('S', "Planos de inspeção para as ordens" + created + " criados com sucesso.");
+                    Mensagem.ShowMessage('S', "Planos de inspeção para as ordens" + created + " criados com sucesso.", false);
                 }
                 else
                 {
-                    Mensagem.ShowMessage('S', "Plano de inspeção para a ordem" + created + " criado com sucesso.");
+                    Mensagem.ShowMessage('S', "Plano de inspeção para a ordem" + created + " criado com sucesso.", false);
                 }
             }
             else
             {
-                Mensagem.ShowMessage('E', "Não foi possível salvar. Tente novamente mais tarde.");
+                Mensagem.ShowMessage('E', "Não foi possível salvar. Tente novamente mais tarde.", false);
             }
         }
         catch (Exception ex)
         {
-            Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+            Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
         }
     }
 
@@ -120,11 +120,11 @@ public partial class Pages_plans : System.Web.UI.Page
         {
             db.Delete(op);
             db.Integrate(op, false);
-            Mensagem.ShowMessage('S', "Plano para a ordem " + op + " excluído com sucesso.");
+            Mensagem.ShowMessage('S', "Plano para a ordem " + op + " excluído com sucesso.", false);
         }
         catch (Exception ex)
         {
-            Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+            Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
         }
     }
 

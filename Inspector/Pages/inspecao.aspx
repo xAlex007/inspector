@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row h-100 py-2">
             <%--Cabeçalho--%>
-            <div id="ins_head" class="row centered" style="font-size: 20px;" runat="server">
+            <div id="ins_head" class="row centered" style="font-size: 20px; display: none;" runat="server">
                 <div class="col-5 text-center fw-bold border border-2 rounded-1 border-success bg-header align-self-end">
                     <div class="row row-cols-1">
                         <div class="col border rounded-1 border-success pt-4 pb-3">
@@ -54,11 +54,10 @@
                 </div>
             </div>
             <%--Dados--%>
-            <div id="ins_data" class="row centered mt-1" runat="server">
+            <div id="ins_data" class="row centered mt-1" style="display: none;" runat="server">
                 <asp:Panel ID="pnl_regs" CssClass="col-5 text-center border border-success rounded-1 bg-light align-self-start" runat="server"></asp:Panel>
                 <div class="row centered gy-1">
                     <asp:Button ID="bSave" class="btn btn-outline-success pt-2" Width="200" runat="server" Text="Salvar" ValidationGroup="Save" OnClick="bSave_Click" />  
-                    <asp:Button ID="bEdit" class="btn btn-outline-primary pt-2" Width="200" runat="server" Text="Editar" style="display:none;" OnClick="bEdit_Click" />
                 </div>
             </div>
         </div>        

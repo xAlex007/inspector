@@ -42,22 +42,22 @@ public partial class Pages_usuarios : System.Web.UI.Page
         {
             if (db.Insert(user))
             {
-                Mensagem.ShowMessage('S', "Usuário <b>" + i_usuario.Text + "</b> cadastrado com sucesso.");
+                Mensagem.ShowMessage('S', "Usuário <b>" + i_usuario.Text + "</b> cadastrado com sucesso.", false);
             }
             else
             {
-                Mensagem.ShowMessage('E', "Erro ao cadastrar. Tente novamente mais tarde.");
+                Mensagem.ShowMessage('E', "Erro ao cadastrar. Tente novamente mais tarde.", false);
             }
         }
         catch (Exception ex)
         {
             if (ex.Message.Contains("Violation of UNIQUE KEY constraint"))
             {
-                Mensagem.ShowMessage('A', "Aviso: Um usuário com esse nome já existe!");
+                Mensagem.ShowMessage('A', "Aviso: Um usuário com esse nome já existe!", false);
             }
             else
             {
-                Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+                Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
             }
         }
     }
@@ -78,16 +78,16 @@ public partial class Pages_usuarios : System.Web.UI.Page
         {
             if (db.Update(user))
             {
-                Mensagem.ShowMessage('S', "Usuário <b>" + i_usuario.Text + "</b> alterado com sucesso.");
+                Mensagem.ShowMessage('S', "Usuário <b>" + i_usuario.Text + "</b> alterado com sucesso.", false);
             }
             else
             {
-                Mensagem.ShowMessage('E', "Erro ao alterar. Tente novamente mais tarde.");
+                Mensagem.ShowMessage('E', "Erro ao alterar. Tente novamente mais tarde.", false);
             }
         }
         catch (Exception ex)
         {
-            Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+            Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
         }
     }
 
@@ -112,11 +112,11 @@ public partial class Pages_usuarios : System.Web.UI.Page
                 try
                 {
                     db.Delete(id);
-                    Mensagem.ShowMessage('S', "Usuário excluído com sucesso.");
+                    Mensagem.ShowMessage('S', "Usuário excluído com sucesso.", false);
                 }
                 catch (Exception ex)
                 {
-                    Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+                    Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
                 }
                 break;
             default:

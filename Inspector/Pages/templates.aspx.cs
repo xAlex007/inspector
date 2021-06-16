@@ -76,23 +76,23 @@ public partial class Pages_templates : System.Web.UI.Page
                 TemplateDB db = new TemplateDB();
                 if (db.Insert(template))
                 {
-                    Mensagem.ShowMessage('S', "Template Nº " + template.Produto + " inserido com sucesso.");
+                    Mensagem.ShowMessage('S', "Template Nº " + template.Produto + " inserido com sucesso.", false);
                 }
             }
             else
             {
-                Mensagem.ShowMessage('A', "Aviso: Um ou mais anexos não são válidos! Tente novamente.");
+                Mensagem.ShowMessage('A', "Aviso: Um ou mais anexos não são válidos! Tente novamente.", false);
             }
         }
         catch (Exception ex)
         {
             if (ex.Message.Contains("Violation of PRIMARY KEY constraint"))
             {
-                Mensagem.ShowMessage('E', "Erro: Um template para esse produto já existe.");
+                Mensagem.ShowMessage('E', "Erro: Um template para esse produto já existe.", false);
             }
             else
             {
-                Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+                Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
             }
         }
     }
@@ -156,17 +156,17 @@ public partial class Pages_templates : System.Web.UI.Page
                 TemplateDB db = new TemplateDB();
                 if (db.Update(template))
                 {
-                    Mensagem.ShowMessage('S', "Template Nº " + template.Produto + " alterado com sucesso.");
+                    Mensagem.ShowMessage('S', "Template Nº " + template.Produto + " alterado com sucesso.", false);
                 }
             }
             else
             {
-                Mensagem.ShowMessage('A', "Aviso: Um ou mais anexos não são válidos! Tente novamente.");
+                Mensagem.ShowMessage('A', "Aviso: Um ou mais anexos não são válidos! Tente novamente.", false);
             }
         }
         catch (Exception ex)
         {
-            Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+            Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
         }
     }
 
@@ -243,11 +243,11 @@ public partial class Pages_templates : System.Web.UI.Page
                     System.IO.File.Delete(delfile);
                     delfile = Convert.ToString(Server.MapPath("~/Src/uploaded/") + template.XLT);
                     System.IO.File.Delete(delfile);
-                    Mensagem.ShowMessage('S', "Template Nº " + produto + " excluído com sucesso.");
+                    Mensagem.ShowMessage('S', "Template Nº " + produto + " excluído com sucesso.", false);
                 }
                 catch (Exception ex)
                 {
-                    Mensagem.ShowMessage('E', "Erro: " + ex.Message);
+                    Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
                 }
                 break;
             default:

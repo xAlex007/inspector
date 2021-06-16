@@ -38,7 +38,7 @@ namespace Inspector.Persist
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT Corrida, Plano, Inspetor, Horario FROM [dbo].[Inspecao]";
+            string sql = "SELECT Corrida, Plano, Inspetor, Horario, Modificado FROM [dbo].[Inspecao]";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "Inspecao");
@@ -55,7 +55,7 @@ namespace Inspector.Persist
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT Corrida, Plano, Inspetor, Horario FROM [dbo].[Inspecao] WHERE Corrida Like '%" + corrida + "%'";
+            string sql = "SELECT Corrida, Plano, Inspetor, Horario, Modificado FROM [dbo].[Inspecao] WHERE Corrida Like '%" + corrida + "%'";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "Inspecao");
@@ -72,7 +72,7 @@ namespace Inspector.Persist
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT Corrida, Plano, Inspetor, Horario FROM [dbo].[Inspecao] WHERE Plano Like '%" + op + "%'";
+            string sql = "SELECT Corrida, Plano, Inspetor, Horario, Modificado FROM [dbo].[Inspecao] WHERE Plano Like '%" + op + "%'";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "Inspecao");
@@ -89,7 +89,7 @@ namespace Inspector.Persist
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT Corrida, Plano, Inspetor, Horario FROM [dbo].[Inspecao] WHERE Plano = '" + op + "' AND Corrida Like '%" + corrida + "%'";
+            string sql = "SELECT Corrida, Plano, Inspetor, Horario, Modificado FROM [dbo].[Inspecao] WHERE Plano = '" + op + "' AND Corrida Like '%" + corrida + "%'";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "Inspecao");
