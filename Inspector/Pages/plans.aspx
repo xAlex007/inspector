@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="plans.aspx.cs" Inherits="Pages_plans" %>
+﻿<%@ Page Title="Planos de Inspeção | Inspector" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="plans.aspx.cs" Inherits="Pages_plans" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" runat="Server">
     <div id="l-gradient">
-        <div class="container-fluid m-auto no-margin container-md">
+        <div class="container-fluid container-md px-0">
             <div class="row mb-2 justify-content-between">
                 <div class="col-3">
                     <asp:Button ID="b_newplano" Class="btn btn-outline-success" Text="Novo" runat="server" OnClick="b_newplano_Click" CausesValidation="false" />
@@ -14,11 +14,11 @@
                     <asp:TextBox ID="Search" CssClass="form-control" runat="server" placeholder="Pesquisar..." OnTextChanged="Search_TextChanged" AutoPostBack="true"></asp:TextBox>
                 </div>
             </div>
-            <div class="row" style="font-size: 1.13rem;">
+            <div class="row fs-18">
                 <div class="col">
                     <asp:ListView ID="lvplanos" runat="server" DataKeyNames="OP" OnItemCommand="lvplanos_ItemCommand" OnPagePropertiesChanged="lvplanos_PagePropertiesChanged">
                         <EmptyDataTemplate>
-                            <table id="itemPlaceholderContainer" runat="server" class="table table-responsive">
+                            <table id="itemPlaceholderContainer" runat="server" class="table data table-responsive">
                                 <thead>
                                     <tr runat="server" class="table-secondary justify-content-center">
                                         <th runat="server" class="text-center">OP</th>
@@ -46,7 +46,7 @@
                             </table>
                         </EmptyDataTemplate>
                         <LayoutTemplate>
-                            <table id="itemPlaceholderContainer" runat="server" class="table table-responsive">
+                            <table id="itemPlaceholderContainer" runat="server" class="table data table-responsive">
                                 <thead>
                                     <tr runat="server" class="table-secondary justify-content-center">
                                         <th runat="server" class="text-center">OP</th>
@@ -91,18 +91,20 @@
                                 <td class="text-center">
                                     <asp:Label ID="QtPecasLabel" runat="server" Text='<%# Eval("QtPecas") %>' />
                                 </td>
-                                <td class="text-center auto-hide">
-                                    <asp:HyperLink ID="QtTotalizadaLink" runat="server" NavigateUrl='<%# Eval("OP","~/Pages/inspecoes.aspx?plano={0}") %>'><%# Eval("QtTotalizada") %></asp:HyperLink>
+                                <td class="text-center">
+                                    <asp:HyperLink ID="QtTotalizadaLink" runat="server" NavigateUrl='<%# Eval("OP","~/pages/inspecoes.aspx?plano={0}") %>'><%# Eval("QtTotalizada") %></asp:HyperLink>
                                 </td>
                                 <td class="text-center auto-hide">
                                     <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center auto-hide">
                                     <asp:Label ID="PosLabel" runat="server" Text='<%# Eval("Posicao") %>' />
                                 </td>
-                                <td style="width: 9.45rem;">
-                                    <asp:LinkButton ID="lbAlterar" class="btn btn-outline-primary btn-sm" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("OP")%>'>Alterar</asp:LinkButton>
-                                    <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("OP")%>'>Deletar</asp:LinkButton>
+                                <td>
+                                    <div class="btn-group d-flex flex-wrap justify-content-center">
+                                        <asp:LinkButton ID="lbAlterar" class="btn btn-outline-primary btn-sm px-0" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("OP")%>'>Alterar</asp:LinkButton>
+                                        <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm px-0" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("OP")%>'>Deletar</asp:LinkButton>
+                                    </div>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -116,17 +118,15 @@
     <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header justify-content-center" style="background-color: rgba(0,0,0,0.3)">
+                <div class="modal-header justify-content-center">
                     <h4 class="modal-title fw-bold" id="staticBackdropLabel">Novo Plano de Inspeção</h4>
                 </div>
-
-                <div class="modal-body" style="background-color: rgba(0,0,0,0.15)">
+                <div class="modal-body">
                     <asp:Label ID="l_op6" runat="server" Text="Ordem de Produção (6 dígitos):"></asp:Label>
                     <asp:TextBox ID="i_op6" CssClass="form-control" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_op6" ValidationGroup="OK" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                 </div>
-
-                <div class="modal-footer" style="background-color: rgba(0,0,0,0.3)">
+                <div class="modal-footer">
                     <asp:Button ID="bCancel" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click" />
                     <asp:Button ID="bOK" class="btn btn-outline-success" runat="server" Text="OK" ValidationGroup="OK" OnClick="bOK_Click" />
                 </div>
@@ -138,10 +138,9 @@
     <div class="modal fade" id="confirmModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header justify-content-center" style="background-color: rgba(0,0,0,0.3)">
+                <div class="modal-header justify-content-center">
                     <h4 class="modal-title fw-bold" id="staticBackdropLabel1">Novo Plano de Inspeção</h4>
                 </div>
-
                 <div class="modal-body">
                     <asp:Label ID="Label1" runat="server" Text="Será criado um plano de inspeção para cada uma das ordens abaixo:"></asp:Label>
                     <br />
@@ -180,6 +179,7 @@
                                         </td>
                                         <td style="padding-left: 1.5em;">
                                             <asp:TextBox ID="txtPeca" CssClass="form-control" Style="text-align: center; font-size: 15px;" Width="60" runat="server"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_produto" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                                         </td>
                                         <td class="text-center text-secondary left-border">
                                             <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
@@ -202,10 +202,9 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
-
-                <div class="modal-footer" style="background-color: rgba(0,0,0,0.3)">
+                <div class="modal-footer">
                     <asp:Button ID="bCancel2" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click" />
-                    <asp:Button ID="bConfirm" class="btn btn-outline-success" runat="server" Text="Confirmar" OnClick="bConfirm_Click" />
+                    <asp:Button ID="bConfirm" class="btn btn-outline-success" runat="server" Text="Confirmar" ValidationGroup="Save" OnClick="bConfirm_Click" />
                 </div>
             </div>
         </div>

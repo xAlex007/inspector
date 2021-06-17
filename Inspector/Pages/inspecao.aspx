@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="inspecao.aspx.cs" Inherits="Pages_plans" %>
+﻿<%@ Page Title="Inspeção | Inspector" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="inspecao.aspx.cs" Inherits="Pages_plans" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="Server">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
@@ -21,9 +21,9 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" runat="Server">
     <div class="container">
-        <div class="row h-100 py-2">
-            <%--Cabeçalho--%>
-            <div id="ins_head" class="row centered" style="font-size: 20px; display: none;" runat="server">
+        <div class="row h-100 py-2" style="font-size:1.25rem;">
+            <!--Cabeçalho-->
+            <div id="ins_head" class="row centered" style="display: none;" runat="server">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-5 ms-4 ms-sm-0 text-center fw-bold border border-2 rounded-1 border-success bg-header align-self-end">
                     <div class="row row-cols-1">
                         <div class="col border rounded-1 border-success pt-4 pb-3">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <%--Dados--%>
+            <!--Dados-->
             <div id="ins_data" class="row centered mt-1" style="display: none;" runat="server">
                 <asp:Panel ID="pnl_regs" CssClass="col-12 col-md-9 col-lg-7 col-xl-5 ms-4 ms-sm-0 text-center border border-success rounded-1 bg-light align-self-start" runat="server"></asp:Panel>
                 <div class="row centered gy-1">
@@ -67,11 +67,10 @@
     <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header justify-content-center" style="background-color: rgba(0,0,0,0.15)">
+                <div class="modal-header justify-content-center">
                     <h4 class="modal-title fw-bold" id="staticBackdropLabel">Novo Registro de Inspeção</h4>
                 </div>
-
-                <div class="modal-body" style="background-color: rgba(0,0,0,0.075)">
+                <div class="modal-body">
                     <div class="row centered">
                         <div class="col-6">
                             <asp:Label ID="l_plano" runat="server" Text="Ordem de Produção:"></asp:Label>
@@ -86,8 +85,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="modal-footer" style="background-color: rgba(0,0,0,0.15)">
+                <div class="modal-footer">
                     <asp:Button ID="bCancel" class="btn btn-outline-danger" runat="server" Text="Sair" OnClick="cancel_Click" />
                     <asp:Button ID="bOK" class="btn btn-outline-success" runat="server" Text="OK" ValidationGroup="OK" OnClick="bOK_Click" />
                 </div>

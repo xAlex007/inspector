@@ -31,10 +31,10 @@ public partial class Pages_plans : System.Web.UI.Page
         switch (e.CommandName)
         {
             case "Detalhes":
-                Response.Redirect("~/Pages/inspecao.aspx?visualiza=" + e.CommandArgument);
+                Response.Redirect("~/pages/inspecao.aspx?visualiza=" + e.CommandArgument);
                 break;
             case "Editar":
-                Response.Redirect("~/Pages/inspecao.aspx?edita=" + e.CommandArgument);
+                Response.Redirect("~/pages/inspecao.aspx?edita=" + e.CommandArgument);
                 break;
             case "Deletar":
                 string corrida = Convert.ToString(e.CommandArgument);

@@ -1,4 +1,4 @@
-﻿function Mensagem(redir) {
+﻿function Mensagem(redir, url) {
     var msgModal = new bootstrap.Modal(document.getElementById('msgModal'), {
         keyboard: false
     })
@@ -7,7 +7,7 @@
         msgModal.hide();
         msgModal.dispose();
         if (redir) {
-            window.location.href = "inspecoes.aspx";
+            window.location.href = url + ".aspx";
         } else {
             window.location.href = window.location.href;
         }

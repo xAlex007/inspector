@@ -1,10 +1,7 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using Inspector.Classes;
-using System.Globalization;
-
 
 namespace Inspector.Persist
 {
@@ -35,7 +32,7 @@ namespace Inspector.Persist
         }
 
         //SelectAll
-        public  DataSet SelectAll(string corrida)
+        public DataSet SelectAll(string corrida)
         {
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
@@ -101,6 +98,5 @@ namespace Inspector.Persist
         {
             // TODO: Add constructor logic here
         }
-
     }
 }

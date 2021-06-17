@@ -6,7 +6,7 @@ namespace Inspector.Classes
 {
     public class Mensagem
     {
-        public static void ShowMessage(char type, string prompt, bool redirect)
+        public static void ShowMessage(char type, string prompt, bool redirect, string url="home")
         {
             Literal msgtype = new Literal();
             Label msg = new Label();
@@ -38,7 +38,7 @@ namespace Inspector.Classes
             }
             if (redirect)
             {
-                ScriptManager.RegisterStartupScript(page, page.GetType(), "Mensagem", "Mensagem(true);", true);
+                ScriptManager.RegisterStartupScript(page, page.GetType(), "Mensagem", "Mensagem(true, '" + url + "');", true);
             }
             else
             {

@@ -152,7 +152,7 @@ public partial class Pages_plans : System.Web.UI.Page
 
     protected void cancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Pages/home.aspx");
+        Response.Redirect("~/pages/home.aspx");
     }
 
     protected void bOK_Click(object sender, EventArgs e)
@@ -266,7 +266,7 @@ public partial class Pages_plans : System.Web.UI.Page
                 }
                 if (fail == false)
                 {
-                    Mensagem.ShowMessage('S', "Inspeção para a corrida <b>" + l_corr.Text + "</b> editada com sucesso.", true);
+                    Mensagem.ShowMessage('S', "Inspeção para a corrida <b>" + l_corr.Text + "</b> editada com sucesso.", true, "inspecoes");
                 }
                 else
                 {

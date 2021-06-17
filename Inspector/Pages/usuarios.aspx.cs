@@ -6,15 +6,24 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_usuarios : System.Web.UI.Page
 {
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        UsuarioDB db = new UsuarioDB();
-        DataSet ds = new DataSet();
-        ds = db.SelectAll();
-        DataTable data = ds.Tables[0];        
-        lvusers.DataSource = data;
-        lvusers.DataBind();
+        string nv = (string)(Session["Nivel"]);
+        if (nv != null && nv != "I")
+        {
+            UsuarioDB db = new UsuarioDB();
+            DataSet ds = new DataSet();
+            ds = db.SelectAll();
+            DataTable data = ds.Tables[0];
+            lvusers.DataSource = data;
+            lvusers.DataBind();
+            b_newuser.Visible = true;
+            Search.Visible = true;
+        }
+        else
+        {
+            Mensagem.ShowMessage('E', "Usuário sem permissão para acessar essa página.", true);
+        }
     }
 
     protected void cancel_Click(object sender, EventArgs e)
@@ -37,7 +46,6 @@ public partial class Pages_usuarios : System.Web.UI.Page
         user.Email = i_email.Text;
         user.Nivel = Convert.ToChar(i_nivel.Text);
         user.IsBlock = false;
-
         try
         {
             if (db.Insert(user))
@@ -66,14 +74,12 @@ public partial class Pages_usuarios : System.Web.UI.Page
     {
         Usuario user = new Usuario();
         UsuarioDB db = new UsuarioDB();
-
         user.Id = Convert.ToInt32(ei_id.Text);
         user.Senha = db.PswHash(ei_senha.Text);
         user.Nome = ei_nome.Text;
         user.Email = ei_email.Text;
         user.Nivel = Convert.ToChar(ei_nivel.Text);
         user.IsBlock = ei_isblock.Checked;
-
         try
         {
             if (db.Update(user))
@@ -95,7 +101,6 @@ public partial class Pages_usuarios : System.Web.UI.Page
     {
         int id = Convert.ToInt32(e.CommandArgument);
         UsuarioDB db = new UsuarioDB();
-
         switch (e.CommandName)
         {
             case "Alterar":

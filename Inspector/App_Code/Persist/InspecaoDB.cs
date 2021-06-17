@@ -33,7 +33,7 @@ namespace Inspector.Persist
         }
 
         //SelectAll
-        public  DataSet SelectAll()
+        public DataSet SelectAll()
         {
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
@@ -176,6 +176,5 @@ namespace Inspector.Persist
         {
             // TODO: Add constructor logic here
         }
-
     }
 }

@@ -1,21 +1,21 @@
-﻿<%@ Page Title="Inspeções - Inspector" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="inspecoes.aspx.cs" Inherits="Pages_plans" %>
+﻿<%@ Page Title="Inspeções | Inspector" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="inspecoes.aspx.cs" Inherits="Pages_plans" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" runat="Server">
     <div id="l-gradient">
-        <div class="container-fluid m-auto no-margin container-md">
+        <div class="container-fluid container-md px-0">
             <div class="row mb-2 justify-content-end">
                 <div class="col-5 col-sm-4 col-md-3 col-lg-2">
                     <asp:TextBox ID="Search" CssClass="form-control" runat="server" placeholder="Pesquisar..." OnTextChanged="Search_TextChanged" AutoPostBack="true"></asp:TextBox>
                 </div>
             </div>
-            <div class="row" style="font-size: 1.13rem;">
+            <div class="row fs-18">
                 <div class="col">
                     <asp:ListView ID="lvinspecoes" runat="server" DataKeyNames="Corrida" OnItemCommand="lvinspecoes_ItemCommand" OnPagePropertiesChanged="lvinspecoes_PagePropertiesChanged">
                         <EmptyDataTemplate>
-                            <table id="itemPlaceholderContainer" runat="server" class="table table-responsive">
+                            <table id="itemPlaceholderContainer" runat="server" class="table data table-responsive">
                                 <thead>
                                     <tr runat="server" class="table-secondary justify-content-center">
                                         <th runat="server" class="text-center">Corrida</th>
@@ -41,7 +41,7 @@
                             </table>
                         </EmptyDataTemplate>
                         <LayoutTemplate>
-                            <table id="itemPlaceholderContainer" runat="server" class="table table-responsive">
+                            <table id="itemPlaceholderContainer" runat="server" class="table data table-responsive">
                                 <thead>
                                     <tr runat="server" class="table-secondary justify-content-center">
                                         <th runat="server" class="text-center">Corrida</th>
@@ -91,11 +91,11 @@
                                 <td class="text-center auto-hide">
                                     <asp:Label ID="ModificadoLabel" runat="server" Text='<%# Eval("Modificado") %>' />
                                 </td>
-                                <td style="width: 13rem;">
-                                    <div class="btn-group flex-wrap" role="group">
-                                        <asp:LinkButton ID="lbDetalhes" class="btn btn-outline-info btn-sm" runat="server" CommandName="Detalhes" CommandArgument='<%# Bind("Corrida")%>'>Detalhes</asp:LinkButton>
-                                        <asp:LinkButton ID="lbEditar" class="btn btn-outline-primary btn-sm" runat="server" CommandName="Editar" CommandArgument='<%# Bind("Corrida")%>'>Editar</asp:LinkButton>
-                                        <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Corrida")%>'>Deletar</asp:LinkButton>
+                                <td>
+                                    <div class="btn-group d-flex flex-wrap justify-content-end">
+                                        <asp:LinkButton ID="lbDetalhes" class="btn btn-outline-info btn-sm px-0" runat="server" CommandName="Detalhes" CommandArgument='<%# Bind("Corrida")%>'>Detalhes</asp:LinkButton>
+                                        <asp:LinkButton ID="lbEditar" class="btn btn-outline-primary btn-sm px-0" runat="server" CommandName="Editar" CommandArgument='<%# Bind("Corrida")%>'>Editar</asp:LinkButton>
+                                        <asp:LinkButton ID="lbDeletar" class="btn btn-outline-danger btn-sm px-0" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Corrida")%>'>Deletar</asp:LinkButton>
                                     </div>
                                 </td>
                             </tr>

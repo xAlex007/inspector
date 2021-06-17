@@ -1,24 +1,24 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="usuarios.aspx.cs" Inherits="Pages_usuarios" %>
+﻿<%@ Page Title="Usuários | Inspector" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="usuarios.aspx.cs" Inherits="Pages_usuarios" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="render" runat="Server">
     <div id="l-gradient">
-        <div class="container-fluid m-auto no-margin container-md">
+        <div class="container-fluid container-md px-0">
             <div class="row mb-2 justify-content-between">
                 <div class="col-3">
-                    <asp:LinkButton ID="b_newuser" CssClass="btn btn-outline-success" runat="server" OnClick="b_newuser_Click" CausesValidation="false"><img src="../Src/img/add-user.png" alt="Novo" style="height:25px;margin-right:4px;"/>Novo</asp:LinkButton>
+                    <asp:LinkButton ID="b_newuser" Visible="false" CssClass="btn btn-outline-success" runat="server" OnClick="b_newuser_Click" CausesValidation="false"><img src="../Src/img/add-user.png" alt="Novo" style="height:25px;margin-right:4px;"/>Novo</asp:LinkButton>
                 </div>
                 <div class="col-5 col-sm-4 col-md-3 col-lg-2">
-                    <asp:TextBox ID="Search" CssClass="form-control" runat="server" placeholder="Pesquisar..." OnTextChanged="Search_TextChanged" AutoPostBack="true"></asp:TextBox>
+                    <asp:TextBox ID="Search" Visible="false" CssClass="form-control" runat="server" placeholder="Pesquisar..." OnTextChanged="Search_TextChanged" AutoPostBack="true"></asp:TextBox>
                 </div>
             </div>
-            <div class="row" style="font-size: 1.13rem;">
+            <div class="row fs-18">
                 <div class="col">
                     <asp:ListView ID="lvusers" runat="server" DataKeyNames="Id" OnItemCommand="lvusers_ItemCommand" OnPagePropertiesChanged="lvusers_PagePropertiesChanged">
                         <EmptyDataTemplate>
-                            <table id="itemPlaceholderContainer" runat="server" class="table table-responsive">
+                            <table id="itemPlaceholderContainer" runat="server" class="table data table-responsive">
                                 <thead>
                                     <tr runat="server" class="table-secondary justify-content-center">
                                         <th runat="server" class="text-center">Usuário</th>
@@ -45,7 +45,7 @@
                             </table>
                         </EmptyDataTemplate>
                         <LayoutTemplate>
-                            <table id="itemPlaceholderContainer" runat="server" class="table table-responsive">
+                            <table id="itemPlaceholderContainer" runat="server" class="table data table-responsive">
                                 <thead>
                                     <tr runat="server" class="table-secondary justify-content-center">
                                         <th runat="server" class="text-center">Usuário</th>
@@ -99,9 +99,11 @@
                                 <td class="text-center">
                                     <asp:CheckBox ID="CB_isblock" runat="server" Checked='<%#Convert.ToBoolean(Eval("IsBlock"))%>' Enabled="false" />
                                 </td>
-                                <td style="width:13rem;">
-                                    <asp:LinkButton ID="lbAlterar" class="btn btn-sm btn-outline-primary" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("Id") %>'><img src="../Src/img/edit-user.png" alt="Alterar" style="height:1.3rem;margin-right:4px;"/>Alterar</asp:LinkButton>
-                                    <asp:LinkButton ID="lbDeletar" class="btn btn-sm btn-outline-danger" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Id") %>'><img src="../Src/img/delete-user.png" alt="Deletar" style="height:1.3rem;margin-right:4px;"/>Deletar</asp:LinkButton>
+                                <td>
+                                    <div class="btn-group d-flex justify-content-center">
+                                        <asp:LinkButton ID="lbAlterar" class="btn btn-sm btn-outline-primary" runat="server" CommandName="Alterar" CommandArgument='<%# Bind("Id") %>'><img src="../Src/img/edit-user.png" alt="Alterar" style="height:1.3rem;margin-right:4px;"/>Alterar</asp:LinkButton>
+                                        <asp:LinkButton ID="lbDeletar" class="btn btn-sm btn-outline-danger" runat="server" CommandName="Deletar" CommandArgument='<%# Bind("Id") %>'><img src="../Src/img/delete-user.png" alt="Deletar" style="height:1.3rem;margin-right:4px;"/>Deletar</asp:LinkButton>
+                                    </div>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -115,25 +117,25 @@
     <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: rgba(0,0,0,0.3)">
-                    <h4 class="modal-title" id="staticBackdropLabel"><strong style="margin-left: 145px;">Novo Usuário</strong></h4>
+                <div class="modal-header justify-content-center">
+                    <h4 class="modal-title fw-bold" id="staticBackdropLabel">Novo Usuário</h4>
                 </div>
-                <div class="modal-body" style="background-color: rgba(0,0,0,0.15)">
+                <div class="modal-body">
                     <asp:Label ID="l_usuario" runat="server" Text="Usuário:"></asp:Label>
                     <asp:TextBox ID="i_usuario" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_usuario" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_usuario" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="l_senha" runat="server" Text="Senha:"></asp:Label>
                     <asp:TextBox ID="i_senha" TextMode="Password" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_senha" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_senha" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="l_nome" runat="server" Text="Nome Completo:"></asp:Label>
                     <asp:TextBox ID="i_nome" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_nome" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_nome" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="l_email" runat="server" Text="E-mail:"></asp:Label>
                     <asp:TextBox ID="i_email" TextMode="Email" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_email" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_email" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="l_nivel" runat="server" Text="Nivel de Acesso:"></asp:Label>
                     <asp:DropDownList ID="i_nivel" CssClass="form-select" runat="server">
@@ -141,11 +143,10 @@
                         <asp:ListItem Value="S">Supervisor</asp:ListItem>
                         <asp:ListItem Value="I">Inspetor</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_nivel" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_nivel" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     <br />
                 </div>
-
-                <div class="modal-footer" style="background-color: rgba(0,0,0,0.3)">
+                <div class="modal-footer">
                     <asp:Button ID="Button4" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click" />
                     <asp:Button ID="Button1" class="btn btn-outline-success" runat="server" Text="Salvar" ValidationGroup="Save" OnClick="bSave_Click" />
                 </div>
@@ -157,26 +158,26 @@
     <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="staticBackdropLabel2"><strong>Editar Usuário</strong></h4>
+                <div class="modal-header justify-content-center">
+                    <h4 class="modal-title fw-bold" id="staticBackdropLabel2">Editar Usuário</h4>
                 </div>
                 <div class="modal-body">
                     <asp:TextBox ID="ei_id" CssClass="form-control" runat="server" Enabled="false" Visible="false"></asp:TextBox>
                     <asp:Label ID="el_usuario" runat="server" Text="Usuário:"></asp:Label>
                     <asp:TextBox ID="ei_usuario" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_usuario" ValidationGroup="Edit"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_usuario" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Edit"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="el_senha" runat="server" Text="Senha:"></asp:Label>
                     <asp:TextBox ID="ei_senha" TextMode="Password" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_senha" ValidationGroup="Edit"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_senha" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Edit"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="el_nome" runat="server" Text="Nome Completo:"></asp:Label>
                     <asp:TextBox ID="ei_nome" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_nome" ValidationGroup="Edit"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_nome" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Edit"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="el_email" runat="server" Text="E-mail:"></asp:Label>
                     <asp:TextBox ID="ei_email" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_email" ValidationGroup="Edit"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_email" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Edit"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="el_nivel" runat="server" Text="Nivel de Acesso:"></asp:Label>
                     <asp:DropDownList ID="ei_nivel" CssClass="form-select" runat="server">
@@ -184,12 +185,11 @@
                         <asp:ListItem Value="S">Supervisor</asp:ListItem>
                         <asp:ListItem Value="I">Inspetor</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_nivel" ValidationGroup="Edit"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="ei_nivel" CssClass="fst-italic fw-bold text-danger text-small" ValidationGroup="Edit"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="el_isblock" runat="server" Text="Bloqueado?"></asp:Label>
                     <asp:CheckBox ID="ei_isblock" CssClass="form-check" runat="server" />
                 </div>
-
                 <div class="modal-footer">
                     <asp:Button ID="Button3" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click" />
                     <asp:Button ID="Button2" class="btn btn-outline-success" runat="server" Text="Salvar" ValidationGroup="Edit" OnClick="bEdit_Click" />
