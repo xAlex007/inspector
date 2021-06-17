@@ -77,6 +77,7 @@ public partial class Pages_plans : System.Web.UI.Page
         l_op.Text = plano;
         l_prod.Text = ds.Tables[0].Rows[0][1].ToString();
         l_desp.Text = ds.Tables[0].Rows[0][2].ToString() + " Pos. " + ds.Tables[0].Rows[0][3].ToString();
+        l_desp.NavigateUrl = "~/Src/uploaded/" + ds.Tables[0].Rows[0][7].ToString();
         l_corr.Text = corrida;
     }
 
@@ -200,7 +201,7 @@ public partial class Pages_plans : System.Web.UI.Page
             //Salvar
             if (edit == false)
             {
-                if (pdb.Update(inspecao.Plano))
+                if (pdb.Update(inspecao.Plano, true))
                 {
                     if (idb.Insert(inspecao))
                     {

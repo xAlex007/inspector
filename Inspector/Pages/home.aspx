@@ -34,7 +34,7 @@
                             <asp:HyperLink class="item-inspecao p-2" NavigateUrl="#" ToolTip="Visualização de Desenhos" runat="server"><asp:Image ImageUrl="~/Src/img/school-supplies.png" AlternateText="Visualização de Desenhos" ToolTip="Visualização de Desenhos" style="height: 85px;" runat="server" /></asp:HyperLink>
                         </div>                        
                         <div class="col d-flex justify-content-start">
-                            <asp:HyperLink class="item-inspecao py-3 px-3" NavigateUrl="#" ToolTip="Não Conformidade" runat="server"><asp:Image class="mt-1" ImageUrl="~/Src/img/high-priority.png" AlternateText="Não Conformidade" ToolTip="Não Conformidade" style="height: 70px;" runat="server" /></asp:HyperLink>
+                            <asp:HyperLink class="item-inspecao py-3 px-3" NavigateUrl="#" ToolTip="Não Conformidades" runat="server"><asp:Image class="mt-1" ImageUrl="~/Src/img/high-priority.png" AlternateText="Não Conformidades" ToolTip="Não Conformidades" style="height: 70px;" runat="server" /></asp:HyperLink>
                         </div>
                     </div>
                 </div>

@@ -24,7 +24,7 @@
         <div class="row h-100 py-2">
             <%--Cabeçalho--%>
             <div id="ins_head" class="row centered" style="font-size: 20px; display: none;" runat="server">
-                <div class="col-5 text-center fw-bold border border-2 rounded-1 border-success bg-header align-self-end">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-5 ms-4 ms-sm-0 text-center fw-bold border border-2 rounded-1 border-success bg-header align-self-end">
                     <div class="row row-cols-1">
                         <div class="col border rounded-1 border-success pt-4 pb-3">
                             <asp:Label CssClass="fw-normal" runat="server" Text="Ordem de Produção: "><asp:Label CssClass="fw-bold" ID="l_op" runat="server"></asp:Label></asp:Label>
@@ -35,7 +35,7 @@
                             <asp:Label CssClass="fw-normal" runat="server" Text="Produto: "><asp:Label CssClass="fw-bold" ID="l_prod" runat="server"></asp:Label></asp:Label>
                         </div>
                         <div class="col border rounded-1 border-success p-center">
-                            <asp:Label CssClass="fw-normal" runat="server" Text="Desenho: "><asp:Label CssClass="fw-bold" ID="l_desp" runat="server"></asp:Label></asp:Label>
+                            <asp:Label CssClass="fw-normal" runat="server" Text="Desenho: "><asp:HyperLink CssClass="fw-bold" ID="l_desp" runat="server"></asp:HyperLink></asp:Label>
                         </div>
                     </div>
                     <div class="row row-cols-1">
@@ -55,22 +55,23 @@
             </div>
             <%--Dados--%>
             <div id="ins_data" class="row centered mt-1" style="display: none;" runat="server">
-                <asp:Panel ID="pnl_regs" CssClass="col-5 text-center border border-success rounded-1 bg-light align-self-start" runat="server"></asp:Panel>
+                <asp:Panel ID="pnl_regs" CssClass="col-12 col-md-9 col-lg-7 col-xl-5 ms-4 ms-sm-0 text-center border border-success rounded-1 bg-light align-self-start" runat="server"></asp:Panel>
                 <div class="row centered gy-1">
                     <asp:Button ID="bSave" class="btn btn-outline-success pt-2" Width="200" runat="server" Text="Salvar" ValidationGroup="Save" OnClick="bSave_Click" />  
                 </div>
             </div>
         </div>        
     </div>
+
     <!--Modal Nova Inspeção-->
     <div class="modal fade" id="newModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header justify-content-center" style="background-color: rgba(0,0,0,0.3)">
+                <div class="modal-header justify-content-center" style="background-color: rgba(0,0,0,0.15)">
                     <h4 class="modal-title fw-bold" id="staticBackdropLabel">Novo Registro de Inspeção</h4>
                 </div>
 
-                <div class="modal-body" style="background-color: rgba(0,0,0,0.15)">
+                <div class="modal-body" style="background-color: rgba(0,0,0,0.075)">
                     <div class="row centered">
                         <div class="col-6">
                             <asp:Label ID="l_plano" runat="server" Text="Ordem de Produção:"></asp:Label>
@@ -86,7 +87,7 @@
                     </div>
                 </div>
 
-                <div class="modal-footer" style="background-color: rgba(0,0,0,0.3)">
+                <div class="modal-footer" style="background-color: rgba(0,0,0,0.15)">
                     <asp:Button ID="bCancel" class="btn btn-outline-danger" runat="server" Text="Sair" OnClick="cancel_Click" />
                     <asp:Button ID="bOK" class="btn btn-outline-success" runat="server" Text="OK" ValidationGroup="OK" OnClick="bOK_Click" />
                 </div>

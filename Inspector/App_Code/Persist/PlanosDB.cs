@@ -143,7 +143,7 @@ namespace Inspector.Persist
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT P.OP, P.Produto, T.Desenho, T.Posicao, T.Cotas, P.QtPecas, P.QtTotalizada FROM [dbo].[PlanoInspecao] P INNER JOIN [dbo].[Template] T ON P.PRODUTO = T.Produto WHERE OP='" + op + "'";
+            string sql = "SELECT P.OP, P.Produto, T.Desenho, T.Posicao, T.Cotas, P.QtPecas, P.QtTotalizada, T.PDF FROM [dbo].[PlanoInspecao] P INNER JOIN [dbo].[Template] T ON P.PRODUTO = T.Produto WHERE OP='" + op + "'";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "PlanoInspecao");

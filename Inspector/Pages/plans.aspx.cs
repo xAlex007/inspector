@@ -118,7 +118,7 @@ public partial class Pages_plans : System.Web.UI.Page
         {
             db.Delete(op);
             db.Integrate(op, false);
-            Mensagem.ShowMessage('S', "Plano para a ordem " + op + " excluído com sucesso.", false);
+            Mensagem.ShowMessage('S', "Plano para a ordem " + op + " foi excluído com sucesso.", false);
         }
         catch (Exception ex)
         {

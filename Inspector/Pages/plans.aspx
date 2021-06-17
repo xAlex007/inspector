@@ -36,7 +36,7 @@
                                         <td></td>
                                         <td></td>
                                         <td class="text-center">
-                                            <span class="fw-bold text-secondary" style="position: relative; left: 2vw;">Nenhum registro encontrado</span>
+                                            <span class="fw-bold text-secondary">Nenhum registro encontrado</span>
                                         </td>
                                         <td></td>
                                         <td></td>
@@ -92,8 +92,7 @@
                                     <asp:Label ID="QtPecasLabel" runat="server" Text='<%# Eval("QtPecas") %>' />
                                 </td>
                                 <td class="text-center auto-hide">
-                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("OP","~/Pages/inspecoes.aspx?plano={0}") %>'><%# Eval("QtTotalizada") %></asp:HyperLink>
-                                    <%--<asp:Label ID="QtTotalizadaLabel" runat="server" Text='<%# Eval("QtTotalizada") %>' />--%>
+                                    <asp:HyperLink ID="QtTotalizadaLink" runat="server" NavigateUrl='<%# Eval("OP","~/Pages/inspecoes.aspx?plano={0}") %>'><%# Eval("QtTotalizada") %></asp:HyperLink>
                                 </td>
                                 <td class="text-center auto-hide">
                                     <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
@@ -152,18 +151,17 @@
                         <ContentTemplate>
                             <asp:ListView ID="lvnewplan" runat="server" DataKeyNames="OP" OnItemCommand="lvnewplan_ItemCommand">
                                 <LayoutTemplate>
-                                    <table id="itemPlaceholderContainer" runat="server" border="1" class="table" style="font-size: 15px;">
+                                    <table id="itemPlaceholderContainer" runat="server" class="table" style="font-size: 15px;">
                                         <thead>
                                             <tr runat="server" class="table-secondary justify-content-center">
                                                 <th runat="server" class="text-center">OP</th>
                                                 <th runat="server" class="text-center">Produto</th>
                                                 <th runat="server" class="text-center">Quant. Peças</th>
-                                                <th runat="server" class="text-center left-border">Desenho</th>
-                                                <th runat="server" class="text-center">Posição</th>
-                                                <th runat="server" class="text-center">Cotas</th>
-                                                <th runat="server" class="text-center">PDF</th>
-                                                <th runat="server" class="text-center">XLT</th>
-                                                <th runat="server"></th>
+                                                <th runat="server" class="text-center text-secondary left-border">Desenho</th>
+                                                <th runat="server" class="text-center text-secondary">Posição</th>
+                                                <th runat="server" class="text-center text-secondary">Cotas</th>
+                                                <th runat="server" class="text-center text-secondary">PDF</th>
+                                                <th runat="server" class="text-center text-secondary">XLT</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -183,23 +181,20 @@
                                         <td style="padding-left: 1.5em;">
                                             <asp:TextBox ID="txtPeca" CssClass="form-control" Style="text-align: center; font-size: 15px;" Width="60" runat="server"></asp:TextBox>
                                         </td>
-                                        <td class="text-center left-border">
+                                        <td class="text-center text-secondary left-border">
                                             <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center text-secondary">
                                             <asp:Label ID="PosicaoLabel" runat="server" Text='<%# Eval("Posicao") %>' />
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center text-secondary">
                                             <asp:Label ID="CotasLabel" runat="server" Text='<%# Eval("Cotas") %>' />
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center text-secondary">
                                             <asp:Label ID="PDFLabel" runat="server" Text='<%# Eval("PDF") %>' />
                                         </td>
-                                        <td class="text-center pe-0">
+                                        <td class="text-center text-secondary pe-0">
                                             <asp:Label ID="XLTLabel" runat="server" Text='<%# Eval("XLT") %>' />
-                                        </td>
-                                        <td class="ps-0" style="padding-top: 1em">
-                                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Src/img/remove.png" AlternateText="Remover" />
                                         </td>
                                     </tr>
                                 </ItemTemplate>
