@@ -267,4 +267,13 @@ public partial class Pages_templates : System.Web.UI.Page
         DataTable data = ds.Tables[0];
         lvtemplates.DataSource = data;
         lvtemplates.DataBind();
-    }}
+    }
+
+    protected void LinkButton1_Click(object sender, EventArgs e)
+    {
+        LinkButton link = (LinkButton)sender;
+        string embed = "<object data=\"{0}\" type=\"application/pdf\" width=\"100%\" height=\"100%\"></object>";
+        Desenho.Text = string.Format(embed, ResolveUrl("~/Src/uploaded/" + link.Text));
+        ClientScript.RegisterStartupScript(this.GetType(), "Pop", "$('#pdfModal').modal('show')", true);
+    }
+}

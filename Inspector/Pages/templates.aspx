@@ -95,7 +95,8 @@
                                     <asp:Label ID="CotasLabel" runat="server" Text='<%# Eval("Cotas") %>' />
                                 </td>
                                 <td class="text-center">
-                                    <asp:HyperLink ID="PDFLink" runat="server" NavigateUrl='<%# Eval("PDF","~/Src/uploaded/{0}") %>'><%# Eval("PDF") %></asp:HyperLink>
+                                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Text='<%# Eval("PDF") %>'></asp:LinkButton>
+                                    <%--<asp:HyperLink ID="PDFLink" runat="server" NavigateUrl='<%# Eval("PDF","~/Src/uploaded/{0}") %>'><%# Eval("PDF") %></asp:HyperLink>--%>
                                 </td>
                                 <td class="text-center">
                                     <asp:Label ID="XLTLabel" runat="server" Text='<%# Eval("XLT") %>' />
@@ -108,7 +109,7 @@
                                 </td>
                             </tr>
                         </ItemTemplate>
-                    </asp:ListView>
+                    </asp:ListView>                    
                 </div>
             </div>
         </div>
@@ -199,6 +200,22 @@
                 <div class="modal-footer">
                     <asp:Button ID="Button3" class="btn btn-outline-danger" runat="server" Text="Cancelar" OnClick="cancel_Click" />
                     <asp:Button ID="Button2" class="btn btn-outline-success" runat="server" Text="Salvar" ValidationGroup="Edit" OnClick="bEdit_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal Desenho-->
+    <div class="modal fade" id="pdfModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="height:77vh">
+                        <asp:Literal ID="Desenho" runat="server"></asp:Literal>
+                    </div>                    
                 </div>
             </div>
         </div>
