@@ -14,7 +14,7 @@ namespace Inspector.Persist
         {
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "INSERT INTO[dbo].[PlanoInspecao]([OP], [Produto]) VALUES('" + plano.OP + "', '" + plano.Produto + "')";
+            string sql = "INSERT INTO[dbo].[PlanoInspecao]([OP], [Produto], [QtPecas]) VALUES('" + plano.OP + "', '" + plano.Produto + "', '" + plano.QtPecas + "')";
             SqlCommand cmd = new SqlCommand(sql, _context);
             _context.Open();
             int m = cmd.ExecuteNonQuery();
@@ -33,12 +33,29 @@ namespace Inspector.Persist
         }
 
         //SelectAll
-        public  DataSet SelectAll()
+        public DataSet SelectAll()
         {
             DataSet ds = new DataSet();
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
             SqlConnection _context = new SqlConnection(connection);
-            string sql = "SELECT * FROM [dbo].[PlanoInspecao]";
+            string sql = "SELECT P.OP, P.Produto, P.QtPecas, P.QtTotalizada, T.Desenho, T.Posicao FROM [dbo].PlanoInspecao AS P INNER JOIN [dbo].Template AS T ON P.Produto = T.Produto";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "PlanoInspecao");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
+        //Search
+        public DataSet Search(string op)
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT P.OP, P.Produto, P.QtPecas, P.QtTotalizada, T.Desenho, T.Posicao FROM [dbo].PlanoInspecao AS P INNER JOIN [dbo].Template AS T ON P.Produto = T.Produto WHERE OP Like '%" + op + "%'";
             SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
             _context.Open();
             cmd.Fill(ds, "PlanoInspecao");
@@ -120,12 +137,37 @@ namespace Inspector.Persist
             }
         }
 
-        //Update - Desabilitado por desuso
-        /*public bool Update(PlanoInspecao plano)
+        //Detalhes do plano para inspeção
+        public DataSet PlanDetails(string op)
+        {
+            DataSet ds = new DataSet();
+            string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
+            SqlConnection _context = new SqlConnection(connection);
+            string sql = "SELECT P.OP, P.Produto, T.Desenho, T.Posicao, T.Cotas, P.QtPecas, P.QtTotalizada, T.PDF FROM [dbo].[PlanoInspecao] P INNER JOIN [dbo].[Template] T ON P.PRODUTO = T.Produto WHERE OP='" + op + "'";
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, _context);
+            _context.Open();
+            cmd.Fill(ds, "PlanoInspecao");
+            _context.Close();
+
+            cmd.Dispose();
+            _context.Dispose();
+            return ds;
+        }
+
+        //Update
+        public bool Update(string op, bool add)
         {
             string connection = ConfigurationManager.ConnectionStrings["InspectorDB"].ConnectionString;
-            SqlConnection _context = new SqlConnection(connection);            
-            string sql = "UPDATE [dbo].[PlanoInspecao] SET Produto = '" + plano.Produto + "' WHERE OP = '" + plano.OP + "'";
+            SqlConnection _context = new SqlConnection(connection);
+            string sql;
+            if (add == true)
+            {
+                sql = "UPDATE [dbo].[PlanoInspecao] SET QtTotalizada = QtTotalizada + 1 WHERE OP = '" + op + "'";
+            }
+            else
+            {
+                sql = "UPDATE [dbo].[PlanoInspecao] SET QtTotalizada = QtTotalizada - 1 WHERE OP = '" + op + "'";
+            }
             SqlCommand cmd = new SqlCommand(sql, _context);
             _context.Open();
             int m = cmd.ExecuteNonQuery();
@@ -141,7 +183,7 @@ namespace Inspector.Persist
             {
                 return false;
             }
-        }*/
+        }
 
         //Delete
         public bool Delete(string op)
@@ -166,10 +208,10 @@ namespace Inspector.Persist
             }
         }
 
+        //Construtor
         public PlanosDB()
         {
             // TODO: Add constructor logic here
         }
-
     }
 }

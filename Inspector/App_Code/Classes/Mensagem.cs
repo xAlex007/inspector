@@ -1,37 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.UI;
-/// <summary>
-/// Descrição resumida de Mensagem
-/// </summary>
-public static class Mensagem
+using System.Web.UI.WebControls;
+
+namespace Inspector.Classes
 {
-    public enum TipoMensagem
+    public class Mensagem
     {
-        Alerta =1,
-        Sucesso =2,
-        Erro = 3,
-    }
-    public static void ExibirAlerta(this System.Web.UI.Page page, TipoMensagem tipo, string texto)
-    {
-        switch(tipo)
+        public static void ShowMessage(char type, string prompt, bool redirect, string url="home")
         {
-            case Mensagem.TipoMensagem.Alerta:
-                texto = "ATENÇÃO \n\n" + texto;
-                break;
-            case Mensagem.TipoMensagem.Erro:
-                texto = "ERRO \n\n" + texto;
-                break;
-            case Mensagem.TipoMensagem.Sucesso:
-                texto = "SUCESSO \n\n" + texto;
-                break;
+            Literal msgtype = new Literal();
+            Label msg = new Label();
+            Page page = HttpContext.Current.Handler as Page;
+            var pagehandler = HttpContext.Current.CurrentHandler;
+            if (pagehandler is Page)
+            {
+                msgtype = (Literal)((Page)pagehandler).Master.FindControl("l_msgtype");
+                msg = (Label)((Page)pagehandler).Master.FindControl("l_status");
+            }
+            msg.Text = prompt;
+            switch (type)
+            {
+                case 'S':
+                    msgtype.Text += "<div class='modal-header justify-content-center bg-success'>";
+                    msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/success.png' height='32'/></h5>";
+                    msgtype.Text += "</div>";
+                    break;
+                case 'A':
+                    msgtype.Text += "<div class='modal-header justify-content-center bg-warning'>";
+                    msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/warning.png' height='32'/></h5>";
+                    msgtype.Text += "</div>";
+                    break;
+                case 'E':
+                    msgtype.Text += "<div class='modal-header justify-content-center bg-danger'>";
+                    msgtype.Text += "<h5 class='modal-title'><img src = '../Src/img/error.png' height='32'/></h5>";
+                    msgtype.Text += "</div>";
+                    break;
+            }
+            if (redirect)
+            {
+                ScriptManager.RegisterStartupScript(page, page.GetType(), "Mensagem", "Mensagem(true, '" + url + "');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(page, page.GetType(), "Mensagem", "Mensagem(false);", true);
+            }            
         }
 
-        string script = " alert('" + texto + "';";
-
-        ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "Alert", script, true);
-
+        public Mensagem()
+        {
+            // TODO: Adicionar lógica do construtor aqui
+        }
     }
 }

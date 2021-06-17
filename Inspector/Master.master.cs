@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Security;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Master : System.Web.UI.MasterPage
@@ -33,7 +30,7 @@ public partial class Master : System.Web.UI.MasterPage
         string nv = (string)(Session["Nivel"]);
         if (nv != null && nv != "I")
         {
-            HyperLink link = new HyperLink(); link.CssClass = "dropdown-item"; link.NavigateUrl = "~/Pages/usuarios.aspx"; link.Attributes.Add("runat", "server");
+            HyperLink link = new HyperLink(); link.CssClass = "dropdown-item"; link.NavigateUrl = "~/pages/usuarios.aspx"; link.Attributes.Add("runat", "server");
             Label txt = new Label(); txt.Text = " Gestão de Usuários";
             Image icon = new Image(); icon.ImageUrl = "~/Src/img/users.png"; icon.CssClass = "pb-1"; icon.Height = 32;
             link.Controls.Add(icon);
@@ -49,6 +46,7 @@ public partial class Master : System.Web.UI.MasterPage
     protected void b_logout_Click(object sender, EventArgs e)
     {
         FormsAuthentication.SignOut();
+        Session.Clear();
         Session.Abandon();
         HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
         cookie.Expires = DateTime.Now.AddYears(-1);
