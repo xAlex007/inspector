@@ -269,7 +269,7 @@ public partial class Pages_templates : System.Web.UI.Page
         lvtemplates.DataBind();
     }
 
-    protected void LinkButton1_Click(object sender, EventArgs e)
+    protected void PDFLink_Click(object sender, EventArgs e)
     {
         LinkButton link = (LinkButton)sender;
         string embed = "<object data=\"{0}\" type=\"application/pdf\" width=\"100%\" height=\"100%\"></object>";
