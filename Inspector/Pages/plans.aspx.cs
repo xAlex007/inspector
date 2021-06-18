@@ -112,17 +112,22 @@ public partial class Pages_plans : System.Web.UI.Page
 
     protected void lvplanos_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
-        string op = Convert.ToString(e.CommandArgument);
-        PlanosDB db = new PlanosDB();
-        try
+        switch (e.CommandName)
         {
-            db.Delete(op);
-            db.Integrate(op, false);
-            Mensagem.ShowMessage('S', "Plano para a ordem " + op + " foi excluído com sucesso.", false);
-        }
-        catch (Exception ex)
-        {
-            Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
+            case "Deletar":
+                string op = Convert.ToString(e.CommandArgument);
+                PlanosDB db = new PlanosDB();
+                try
+                {
+                    db.Delete(op);
+                    db.Integrate(op, false);
+                    Mensagem.ShowMessage('S', "Plano para a ordem " + op + " foi excluído com sucesso.", false);
+                }
+                catch (Exception ex)
+                {
+                    Mensagem.ShowMessage('E', "Erro: " + ex.Message, false);
+                }
+                break;
         }
     }
 

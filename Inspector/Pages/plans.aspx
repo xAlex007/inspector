@@ -150,7 +150,7 @@
                         <ContentTemplate>
                             <asp:ListView ID="lvnewplan" runat="server" DataKeyNames="OP" OnItemCommand="lvnewplan_ItemCommand">
                                 <LayoutTemplate>
-                                    <table id="itemPlaceholderContainer" runat="server" class="table" style="font-size: 15px;">
+                                    <table id="itemPlaceholderContainer" runat="server" class="table data table-responsive" style="font-size: 0.94rem;">
                                         <thead>
                                             <tr runat="server" class="table-secondary justify-content-center">
                                                 <th runat="server" class="text-center">OP</th>
@@ -177,9 +177,11 @@
                                         <td class="text-center">
                                             <asp:Label ID="ProdutoLabel" runat="server" Text='<%# Eval("Produto") %>' />
                                         </td>
-                                        <td style="padding-left: 1.5em;">
-                                            <asp:TextBox ID="txtPeca" CssClass="form-control" Style="text-align: center; font-size: 15px;" Width="60" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="i_produto" ValidationGroup="Save" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
+                                        <td>
+                                            <div class="d-flex centered">
+                                                <asp:TextBox ID="txtPeca" CssClass="form-control" Style="text-align: center;" Width="60" runat="server"></asp:TextBox>                                                
+                                            </div>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo obrigatório." ControlToValidate="txtPeca" ValidationGroup="Save" Display="Dynamic" CssClass="fst-italic fw-bold text-danger text-small"></asp:RequiredFieldValidator>
                                         </td>
                                         <td class="text-center text-secondary left-border">
                                             <asp:Label ID="DesenhoLabel" runat="server" Text='<%# Eval("Desenho") %>' />
